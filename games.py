@@ -10,7 +10,6 @@ def evaluate_num(num):
     if num in ['2','3','4','5','6','7','8','9','10']:
         return int(num)
 
-
 def counting(hand):
     global count
     plusone = ['2','3','4','5','6']

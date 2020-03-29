@@ -1,6 +1,8 @@
-# Title
-What it does
+# PlayingCards
+pytohn pacakage for simulating cards games and shuffles !
 ### How to setup:
-Like clone from git and whatnot
+1) git clone https://github.com/Shellywell123/PlayingCards.git
+
+
 ### How to run:
-Including the run command
+1) execute play.py
