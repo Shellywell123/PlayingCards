@@ -1,13 +1,15 @@
 red = '\033[91m'
+redcard ='\033[31;47m'
 yellow ='\033[93m'
 blue = '\033[94m'
+blackcard = '\033[30;47m'
 white='\033[0m'
 green='\033[32m'
 
-spades = blue+'\xe2\x99\xa0'+white
-diamonds = red+'\xe2\x99\xa6'+white
-hearts =red+'\xe2\x99\xa5'+white
-clubs = blue+'\xe2\x99\xa3'+white
+spades = blackcard+'\xe2\x99\xa0'+blackcard
+diamonds = redcard+'\xe2\x99\xa6'+redcard
+hearts =redcard+'\xe2\x99\xa5'+redcard
+clubs = blackcard+'\xe2\x99\xa3'+blackcard
 
 suits =   [spades,clubs,hearts,diamonds]
 numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
@@ -61,27 +63,27 @@ def cardsci(num,suit):
         numbot = num
      
 
-    a=' '
-    b=' '
-    c=' '
-    d=' '
-    e=' '
-    f=' '
-    g=' '
-    h=' '
-    i=' '
-    k=' '
-    l=' '
-    m=' '
-    n=' '
-    o=' '
-    p=' '
-    q=' '
-    r=' '
-    s=' '
-    t=' '
-    u=' '
-    v=' '
+    a=blackcard+' '
+    b=blackcard+' '
+    c=blackcard+' '
+    d=blackcard+' '
+    e=blackcard+' '
+    f=blackcard+' '
+    g=blackcard+' '
+    h=blackcard+' '
+    i=blackcard+' '
+    k=blackcard+' '
+    l=blackcard+' '
+    m=blackcard+' '
+    n=blackcard+' '
+    o=blackcard+' '
+    p=blackcard+' '
+    q=blackcard+' '
+    r=blackcard+' '
+    s=blackcard+' '
+    t=blackcard+' '
+    u=blackcard+' '
+    v=blackcard+' '
 
     if num == 'temp':
         a='a'
@@ -241,19 +243,31 @@ def cardsci(num,suit):
         u=back
         v=back
 
+    L = blackcard
+    R = white
+
     return """
-          -------------
-         |{}          |
-         |    {} {} {}   |
-         |    {} {} {}   |
-         |    {} {} {}   |
-         |    {} {} {}   |
-         |    {} {} {}   |
-         |    {} {} {}   |
-         |    {} {} {}   |
-         |          {}|
-          -------------
-          """.format(numtop,a,b,c,d,e,f,g,h,i,k,l,m,n,o,p,q,r,s,t,u,v,numbot)
+          ----------- 
+         |{}{}         {}|
+         |{}   {} {} {}   {}|
+         |{}   {} {} {}   {}|
+         |{}   {} {} {}   {}|
+         |{}   {} {} {}   {}|
+         |{}   {} {} {}   {}|
+         |{}   {} {} {}   {}|
+         |{}   {} {} {}   {}|
+         |{}         {}{}|
+          ----------- 
+          """.format(
+            L,numtop,R,
+            L,a,b,c,R,
+            L,d,e,f,R,
+            L,g,h,i,R,
+            L,k,l,m,R,
+            L,n,o,p,R,
+            L,q,r,s,R,
+            L,t,u,v,R,
+            L,numbot,R)
 
 
 def show_deck(deck):
@@ -283,7 +297,7 @@ def show_hand(messyhand):
 
 def getinfo(card):
     num = card.split('\x1b')[0]
-    suit = '\x1b'+card.split('\x1b')[1] +white
+    suit = '\x1b'+card.split('\x1b')[1]
 
    # print num,suit
     return num,suit

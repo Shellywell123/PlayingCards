@@ -31,11 +31,12 @@ def counting(hand):
             count = count
             print 'count = ',count
 
-    import matplotlib.pyplot as plt
-    plt.xlabel('num of cards')
-    plt.ylabel('count')
-    plt.plot(len(hand),count)
-    plt.show()
+    #import matplotlib.pyplot as plt
+    #plt.xlabel('num of cards')
+    #plt.ylabel('count')
+    #plt.plot(len(hand),count)
+    #plt.grid()
+    #plt.show()
     return count
 
 def evaluate_num_hand(hand):
@@ -62,6 +63,7 @@ def evaluate_num_hand(hand):
     return hand_val
 
 def blackjack(deck):
+    print '\n'*5
     print'-'*100
     global count
     deck,hand = draw(2,deck)
@@ -72,8 +74,13 @@ def blackjack(deck):
         show_hand(hand)
         val = evaluate_num_hand(hand)
 
+        if val==21:
+            print green,val, '!',white
+            blackjack(deck)
+
         if val>21:
-            print val, 'bust!'
+            print red,val, 'bust!',white
+            blackjack(deck)
 
         else:
 
@@ -87,9 +94,28 @@ def blackjack(deck):
                 ask(deck,hand)
 
             if str(opt) == 'stand':
-                opt = raw_input('play again?\n')
-                if opt == 'yes':
-                    blackjack(deck)
+                blackjack(deck)
+                #opt2 = raw_input('play again?\n')
+                #if opt2 == 'yes':
+                #    blackjack(deck)
+                #else:
+                #    return 0
+
+            if str(opt) == 'help':
+                print green,'''\n\n\nOptions
+-------------------------------
+"hit"   = another card,
+"stand" = stick with current hand,
+"exit"  = quit game
+                ''',white
+                blackjack(deck)
+
+            if str(opt) == 'exit':
+                return 0
+
+            else:
+                print red,'"',str(opt),'" is not a valid input, pls type "hit" or "stand"',white
+                ask(deck,hand)
 
     ask(deck,hand)
 
