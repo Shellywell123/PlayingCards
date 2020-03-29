@@ -10,6 +10,34 @@ def evaluate_num(num):
     if num in ['2','3','4','5','6','7','8','9','10']:
         return int(num)
 
+
+def counting(hand):
+    global count
+    plusone = ['2','3','4','5','6']
+    meh = ['7','8','9']
+    negone = ['10','J','Q','K','A']
+
+    for card in hand:
+        num,suit = getinfo(card)
+        if num in plusone:
+            count = count + 1
+            print 'count = ',count
+
+        if num in negone:
+            count = count - 1
+            print 'count = ',count
+
+        if num in meh:
+            count = count
+            print 'count = ',count
+
+    import matplotlib.pyplot as plt
+    plt.xlabel('num of cards')
+    plt.ylabel('count')
+    plt.plot(len(hand),count)
+    plt.show()
+    return count
+
 def evaluate_num_hand(hand):
     hand_val = 0
 
