@@ -111,6 +111,7 @@ def blackjack(deck):
                 blackjack(deck)
 
             if str(opt) == 'exit':
+                print 'goodbye ...'
                 return 0
 
             else:
