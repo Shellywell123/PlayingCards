@@ -1,0 +1,31 @@
+
+spades = '\xe2\x99\xa0'
+diamonds = '\xe2\x99\xa6'
+hearts ='\xe2\x99\xa5'
+clubs = '\xe2\x99\xa3'
+def new_decK():
+
+    suits =   [spades,clubs,hearts,diamonds]
+    numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
+
+    deck = []
+    
+    for suit in suits:
+        for number in numbers:
+            deck.append(number + ' ' +suit)
+
+    return deck
+
+def split(deck):
+    split = len(deck)//2
+    return deck[:split], deck[split:]
+
+def riffle(deck):
+    top,bottom = split(deck)
+    riffled = []
+
+    
+    for n in range(len(top)):
+        riffled.append(top[n])
+        riffled.append(bottom[n])
+    return riffled
