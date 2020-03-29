@@ -25,9 +25,12 @@ def evaluate_num_hand(hand):
         num,suit=getinfo(card)
         nums.append(num)
 
-    if hand_val>21:
+    
+    for i in nums:
+        if i is 'A':
+            if hand_val > 21:
+                hand_val -= 10
 
-        hand_val=hand_val-10
     return hand_val
 
 def blackjack(deck):
