@@ -1,6 +1,5 @@
 from deck import *
 
-
 def evaluate_num(num):
     if num == 'A':
         return 11
@@ -16,7 +15,7 @@ def evaluate_num_hand(hand):
 
     for card in hand:
         num,suit = getinfo(card)
-        print num
+       # print num
         cardval = evaluate_num(num)
         hand_val = hand_val + cardval
         #print evaluate_num(num)
