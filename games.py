@@ -89,15 +89,15 @@ def blackjack(deck):
             if str(opt) == 'exit':
                 print 'goodbye ...'
                 exit(0)
-                
-            if str(opt) == 'hit'or'h':
+
+            if str(opt) == 'hit'or str(opt) =='h':
                 deck,hit = draw(1,deck)
                 newcount = counting(hit)
                 count = newcount
                 hand = hand + hit
                 ask(deck,hand)
 
-            if str(opt) == 'stand'or's':
+            if str(opt) == 'stand'or str(opt) =='s':
                 blackjack(deck)
                 #opt2 = raw_input('play again?\n')
                 #if opt2 == 'yes':
@@ -113,8 +113,6 @@ def blackjack(deck):
 "exit"  = quit game
                 ''',white
                 blackjack(deck)
-
-            
 
             else:
                 print red,'"',str(opt),'" is not a valid input, pls type "hit" or "stand"',white
