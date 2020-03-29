@@ -112,7 +112,7 @@ def blackjack(deck):
 
             if str(opt) == 'exit':
                 print 'goodbye ...'
-                return 0
+                exit(0)
 
             else:
                 print red,'"',str(opt),'" is not a valid input, pls type "hit" or "stand"',white

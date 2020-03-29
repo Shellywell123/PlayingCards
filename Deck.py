@@ -6,11 +6,12 @@ blackcard = '\033[30;47m'
 white='\033[0m'
 green='\033[32m'
 greentable =  '\033[32;42m'
+card_back = '\033[0;41m'
 
-spades = blackcard+'\xe2\x99\xa0'+blackcard
-diamonds = redcard+'\xe2\x99\xa6'+redcard
-hearts =redcard+'\xe2\x99\xa5'+redcard
-clubs = blackcard+'\xe2\x99\xa3'+blackcard
+spades = blackcard+'\xe2\x99\xa0'
+diamonds = redcard+'\xe2\x99\xa6'
+hearts =redcard+'\xe2\x99\xa5'
+clubs = blackcard+'\xe2\x99\xa3'
 
 suits =   [spades,clubs,hearts,diamonds]
 numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
@@ -218,36 +219,11 @@ def cardsci(num,suit):
         q=suit
         s=suit
 
-    if num == '#':
-        numtop = '  '
-        numbot = '  '
-        back=green+'#'+white
-        a=back
-        b=back
-        c=back
-        d=back
-        e=back
-        f=back
-        g=back
-        h=back
-        i=back
-        k=back
-        l=back
-        m=back
-        n=back
-        o=back
-        p=back
-        q=back
-        r=back
-        s=back
-        t=back
-        u=back
-        v=back
 
     L = blackcard
     R = white
 
-    return """
+    _cardsci = """
          {}{}         {}
          {}   {} {} {}   {}
          {}   {} {} {}   {}
@@ -266,6 +242,22 @@ def cardsci(num,suit):
             L,q,r,s,R,
             L,t,u,v,R,
             L,numbot,R)
+
+    if num == '#':
+        _cardsci = white+'\n'+(('         '+redcard+(' '*11))+white)+('\n' +(('         '+redcard+' '+card_back+('#'*9))+redcard+' '+white))*7 +'\n'+(('         '+redcard+(' '*11))+white)
+
+    return _cardsci
+
+def show_backs():
+    hand = []
+    for n in range(4):
+        hand.append(cardsci('#','#'))
+
+    for n in range(10):
+        for card in hand:
+            lines = card.split('\n')
+            print lines[n],
+        print '\n',
 
 
 def show_deck(deck):
