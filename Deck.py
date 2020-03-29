@@ -246,9 +246,8 @@ def cardsci(num,suit):
 
     L = blackcard
     R = white
-    
+
     return """
-           
          {}{}         {}
          {}   {} {} {}   {}
          {}   {} {} {}   {}
@@ -257,9 +256,7 @@ def cardsci(num,suit):
          {}   {} {} {}   {}
          {}   {} {} {}   {}
          {}   {} {} {}   {}
-         {}         {}{}
-           
-          """.format(
+         {}         {}{}""".format(
             L,numtop,R,
             L,a,b,c,R,
             L,d,e,f,R,
@@ -290,7 +287,7 @@ def show_hand(messyhand):
         num,suit=getinfo(card)
         hand.append(cardsci(num,suit))
 
-    for n in range(13):
+    for n in range(10):
         for card in hand:
             lines = card.split('\n')
             print lines[n],
