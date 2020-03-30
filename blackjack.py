@@ -66,10 +66,14 @@ def evaluate_num_hand(hand):
 
 def play_again(deck):
     opt2 = raw_input('play again?\n')
-    if opt2 == 'yes' or opt2 =='':
+    if opt2 == 'yes' or opt2 =='y' or opt2 =='':
         blackjack(deck)
-    else:
+    if opt2 =='no' or opt2 =='n' or opt2 =='exit':
         exit(0)
+    else:
+        print '"'+opt2+'" is not a valid input, pls type "yes/y" or "no/n"'
+        play_again(deck)
+
 
 def clear():
     print(chr(27) + "[2J")
@@ -141,19 +145,14 @@ def blackjack(deck):
                 if dealers_val == val:
                     print "Push",white
                     play_again(deck)
-                    pass
 
                 if dealers_hand < val:
                     print green,"you win!",white
                     play_again(deck)
-                    pass
 
                 if dealers_val > val:
                     print red,"dealer wins",white
                     play_again(deck)
-                    pass
-                else:
-                    print 'fucking broken stand'
 
             if str(opt) == 'help':
                 print green,'''\nOptions
