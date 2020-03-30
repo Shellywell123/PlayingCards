@@ -245,7 +245,7 @@ def cardsci(num,suit,bg=white):
             L,numbot,R)
 
     if num == '#':
-        _cardsci = white+'\n'+((redcard+(' '*11))+white)+('\n' +((redcard+' '+card_back+('#'*9))+redcard+' '+white))*7 +'\n'+((redcard+(' '*11))+white)
+        _cardsci = bg+'\n'+((redcard+(' '*11))+bg)+('\n' +((redcard+' '+card_back+('#'*9))+redcard+' '+bg))*7 +'\n'+((redcard+(' '*11))+bg)
 
     return _cardsci
 
@@ -279,6 +279,22 @@ def show_hand(messyhand,bg=white):
     for card in messyhand:
         num,suit=getinfo(card)
         hand.append(cardsci(num,suit,bg=bg))
+
+    print bg
+    for n in range(10):
+        for card in hand:
+            lines = card.split('\n')
+            print lines[n],
+        print '\n',
+
+def show_half_hand(messyhand,bg=white):
+    hand = []
+
+    for card in messyhand:
+        num,suit=getinfo(card)
+        hand.append(cardsci(num,suit,bg=bg))
+
+    hand = hand[:-1] + [cardsci('#','#',bg=bg)]
 
     print bg
     for n in range(10):
