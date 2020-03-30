@@ -164,7 +164,7 @@ def blackjack(deck):
                 ''',white
                 ask(deck,hand,dealers_hand,headless=True)
 
-            else:
+            if str(opt) not in ['stant','s','hit','h','help','exit']:
                 print red,'"'+str(opt)+'" is not a valid input, pls type "hit/h" or "stand/s".\n For more options type "help".',white
                 ask(deck,hand,dealers_hand,headless=True)
 
