@@ -65,12 +65,16 @@ def evaluate_num_hand(hand):
     return hand_val
 
 def play_again(deck):
+    width,hight = terminal_size()
+    print'-'*width
+
     opt2 = raw_input('play again?\n')
+
     if opt2 == 'yes' or opt2 =='y' or opt2 =='':
         blackjack(deck)
     if opt2 =='no' or opt2 =='n' or opt2 =='exit':
         exit(0)
-    else:
+    if opt2 not in ['n','no','yes','y','','exit']:
         print '"'+opt2+'" is not a valid input, pls type "yes/y" or "no/n"'
         play_again(deck)
 
@@ -142,17 +146,20 @@ def blackjack(deck):
             if (str(opt)=='stand') or (str(opt)=='s'):
 
                 show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
+                
                 if dealers_val == val:
                     print "Push",white
                     play_again(deck)
 
-                if dealers_hand < val:
-                    print green,"you win!",white
+                if dealers_val < val:
+                    print green+"you win!"+white
                     play_again(deck)
 
                 if dealers_val > val:
                     print red,"dealer wins",white
                     play_again(deck)
+                #else:
+                #    print 'missed'
 
             if str(opt) == 'help':
                 print green,'''\nOptions
