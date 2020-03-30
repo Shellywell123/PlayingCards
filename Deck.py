@@ -6,6 +6,7 @@ blackcard = '\033[30;47m'
 white='\033[0m'
 green='\033[32m'
 greentable =  '\033[40;42m'
+bluetable = '\033[0;44m'
 card_back = '\033[0;41m'
 
 spades = blackcard+'\xe2\x99\xa0'
