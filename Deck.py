@@ -5,7 +5,7 @@ blue = '\033[94m'
 blackcard = '\033[30;47m'
 white='\033[0m'
 green='\033[32m'
-greentable =  '\033[32;42m'
+greentable =  '\033[40;42m'
 card_back = '\033[0;41m'
 
 spades = blackcard+'\xe2\x99\xa0'
@@ -56,7 +56,7 @@ def draw(n,deck):
     return deck2,hand
 
 
-def cardsci(num,suit):
+def cardsci(num,suit,bg=white):
     if not num=='10':
         numtop = num+' '
         numbot = ' '+num
@@ -221,18 +221,18 @@ def cardsci(num,suit):
 
 
     L = blackcard
-    R = white
+    R = bg
 
     _cardsci = """
-         {}{}         {}
-         {}   {} {} {}   {}
-         {}   {} {} {}   {}
-         {}   {} {} {}   {}
-         {}   {} {} {}   {}
-         {}   {} {} {}   {}
-         {}   {} {} {}   {}
-         {}   {} {} {}   {}
-         {}         {}{}""".format(
+{}{}         {}
+{}   {} {} {}   {}
+{}   {} {} {}   {}
+{}   {} {} {}   {}
+{}   {} {} {}   {}
+{}   {} {} {}   {}
+{}   {} {} {}   {}
+{}   {} {} {}   {}
+{}         {}{}""".format(
             L,numtop,R,
             L,a,b,c,R,
             L,d,e,f,R,
@@ -244,7 +244,7 @@ def cardsci(num,suit):
             L,numbot,R)
 
     if num == '#':
-        _cardsci = white+'\n'+(('         '+redcard+(' '*11))+white)+('\n' +(('         '+redcard+' '+card_back+('#'*9))+redcard+' '+white))*7 +'\n'+(('         '+redcard+(' '*11))+white)
+        _cardsci = white+'\n'+((redcard+(' '*11))+white)+('\n' +((redcard+' '+card_back+('#'*9))+redcard+' '+white))*7 +'\n'+((redcard+(' '*11))+white)
 
     return _cardsci
 
@@ -272,13 +272,14 @@ def show_deck(deck):
 
         show_hand(hand)
         
-def show_hand(messyhand):
+def show_hand(messyhand,bg=white):
     hand = []
 
     for card in messyhand:
         num,suit=getinfo(card)
-        hand.append(cardsci(num,suit))
+        hand.append(cardsci(num,suit,bg=bg))
 
+    print bg
     for n in range(10):
         for card in hand:
             lines = card.split('\n')

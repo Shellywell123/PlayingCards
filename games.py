@@ -61,29 +61,46 @@ def evaluate_num_hand(hand):
 
     return hand_val
 
+def play_again(deck):
+    opt2 = raw_input('play again?\n')
+    if opt2 == 'yes' or opt2 =='':
+        blackjack(deck)
+    else:
+        exit(0)
+
 def blackjack(deck):
     print '\n'*5
     print'-'*100
     global count
+
+    deck,dealers_hand = draw(2,deck)
     deck,hand = draw(2,deck)
     count = counting(hand)
 
     
-    def ask(deck,hand):
-        show_hand(hand)
+    def ask(deck,hand,dealers_hand):
+
         val = evaluate_num_hand(hand)
+        dealers_val = evaluate_num_hand(dealers_hand)
+
+        print '\n'+white+"DEALER'S HAND =",dealers_val,
+        show_hand(dealers_hand)
+
+        print '\n'+greentable+"YOUR HAND =",val
+        show_hand(hand,bg=greentable)
+        print white
 
         if val==21:
             print green,val, '!',white
-            blackjack(deck)
+            play_again(deck)
 
         if val>21:
             print red,val, 'bust!',white
-            blackjack(deck)
+            play_again(deck)
 
         else:
 
-            opt=raw_input("{} hit or stand?\n".format(val))
+            opt=raw_input("\n{}hit or stand?{}\n".format(yellow,white))
 
             if str(opt) == 'exit':
                 print 'goodbye ...'
@@ -94,15 +111,20 @@ def blackjack(deck):
                 newcount = counting(hit)
                 count = newcount
                 hand = hand + hit
-                ask(deck,hand)
+                ask(deck,hand,dealers_hand)
 
             if str(opt) == 'stand'or str(opt) =='s':
-                blackjack(deck)
-                #opt2 = raw_input('play again?\n')
-                #if opt2 == 'yes':
-                #    blackjack(deck)
-                #else:
-                #    return 0
+                if dealers_val == val:
+                    print "draw",white
+                    play_again(deck)
+
+                if dealers_hand > val:
+                    print green,"you win!",white
+                    play_again(deck)
+
+                if dealers_val < val:
+                    print red,"dealer wins",white
+                    play_again(deck)
 
             if str(opt) == 'help':
                 print green,'''\n\n\nOptions
@@ -115,8 +137,8 @@ def blackjack(deck):
 
             else:
                 print red,'"',str(opt),'" is not a valid input, pls type "hit" or "stand"',white
-                ask(deck,hand)
+                ask(deck,hand,dealers_hand)
 
-    ask(deck,hand)
+    ask(deck,hand,dealers_hand)
 
 
