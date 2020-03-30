@@ -1,9 +1,9 @@
 from deck import *
-from games import *
+from blackjack import *
 
 deck = new_deck()
-show_deck(deck)
+#show_deck(deck)
 deck = riffle(deck)
 shuffle(deck)
-show_backs()
+#show_backs()
 blackjack(deck)
