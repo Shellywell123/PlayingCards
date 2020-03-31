@@ -116,7 +116,11 @@ def blackjack(deck):
     
     showbets()
     global balance
-    bi = int(raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)\n$"))
+    bi = raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)\n$")
+    if bi =='exit':
+        print 'goodbye ...'
+        exit(0)
+    bi = int(bi)
     if bi <=0:
         print red+'"'+str(bi)+'" invalid input please use postive amount\n'+white
         blackjack(deck)
