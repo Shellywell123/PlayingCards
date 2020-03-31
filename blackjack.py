@@ -125,7 +125,7 @@ def blackjack(deck):
 
         if val>21:
             show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
-            print red,val,'Bust!',white
+            print red+str(val)+' BUST!'+white
             play_again(deck)
 
         else:
@@ -148,15 +148,39 @@ def blackjack(deck):
                 show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
                 
                 if dealers_val == val:
-                    print "Push",white
+                    print "PUSH",white
                     play_again(deck)
 
                 if dealers_val < val:
-                    print green+"you win!"+white
-                    play_again(deck)
+                    
+                    deack,dealers_hit = draw(1,deck)
+                    dealers_hand = dealers_hand + dealers_hit
+                    #print dealers_hand
+                    dealers_val_new = evaluate_num_hand(dealers_hand)
+                    show_table(dealers_hand,hand,dealers_val_new,dealers_val_blind,val)
+                    print yellow+'DEALER HITS'+white
+
+                    if dealers_val_new>21:
+                        print red+'DEALER BUST'+white
+                        print green+"you win!"+white
+                        play_again(deck)
+
+                    else:
+
+                        if dealers_val_new < val:
+                            print green+"YOU WIN!"+white
+                            play_again(deck)
+
+                        if dealers_val_new>val:
+                            print red+"DEALER WINS"+white
+                            play_again(deck)
+
+                        if dealers_val_new == val:
+                            print "PUSH"+white
+                            play_again(deck)
 
                 if dealers_val > val:
-                    print red,"dealer wins",white
+                    print red+"DEALER WINS"+white
                     play_again(deck)
                 #else:
                 #    print 'missed'
