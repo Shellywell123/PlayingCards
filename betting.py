@@ -11,6 +11,7 @@ def showbets():
 
 def buyin(bet):
     global balance
+    global pot
     print balance
     balance = balance - bet
     pot = bet*2

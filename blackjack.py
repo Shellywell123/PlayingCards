@@ -114,7 +114,7 @@ def blackjack(deck):
 
     bi = int(raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)\n$"))
     if bi <0:
-        print '"'+str(input)+'" invalid input please use postive amount\n'
+        print '"'+str(bi)+'" invalid input please use postive amount\n'
         blackjack(deck)
 
     buyin(bi)
