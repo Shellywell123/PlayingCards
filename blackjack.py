@@ -112,10 +112,13 @@ def blackjack(deck):
     deck,hand = draw(2,deck)
     
     showbets()
-
+    global balance
     bi = int(raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)\n$"))
-    if bi <0:
-        print '"'+str(bi)+'" invalid input please use postive amount\n'
+    if bi <=0:
+        print red+'"'+str(bi)+'" invalid input please use postive amount\n'+white
+        blackjack(deck)
+    if bi>balance:
+        print red+'"'+str(bi)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white
         blackjack(deck)
 
     buyin(bi)
