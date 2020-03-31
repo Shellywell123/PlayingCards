@@ -1,5 +1,8 @@
 from deck import *
+from betting import *
 from console import *
+
+
 
 def evaluate_num(num):
     if num == 'A':
@@ -83,7 +86,7 @@ def clear():
     print(chr(27) + "[2J")
 
 def show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val,blind=False):
-    clear()
+    
     width,hight = terminal_size()
     print'-'*width
     count = counting([dealers_hand[0]]+hand)
@@ -106,6 +109,17 @@ def blackjack(deck):
     
     deck,dealers_hand = draw(2,deck)
     deck,hand = draw(2,deck)
+    
+    showbets()
+
+    bi = int(raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)\n$"))
+    if bi <0:
+        print '"'+str(input)+'" invalid input please use postive amount\n'
+        blackjack(deck)
+
+    buyin(bi)
+
+
 
     def ask(deck,hand,dealers_hand,headless=False):
 
@@ -121,11 +135,13 @@ def blackjack(deck):
         if val==21:            
             show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
             print green,val,'!',white
+            win()
             play_again(deck)
 
         if val>21:
             show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
             print red+str(val)+' BUST!'+white
+            lose()
             play_again(deck)
 
         else:
@@ -141,6 +157,7 @@ def blackjack(deck):
                 newcount = counting(hit)
                 count = newcount
                 hand = hand + hit
+                raisee(bi)
                 ask(deck,hand,dealers_hand)
 
             if (str(opt)=='stand') or (str(opt)=='s'):
@@ -149,6 +166,7 @@ def blackjack(deck):
                 print 'YOU STAND'
                 if dealers_val == val:
                     print "PUSH",white
+                    push()
                     play_again(deck)
 
                 if dealers_val < val:
@@ -162,24 +180,29 @@ def blackjack(deck):
                     if dealers_val_new>21:
                         print red+'DEALER BUST'+white
                         print green+"YOU WIN!"+white
+                        win()
                         play_again(deck)
 
                     else:
 
                         if dealers_val_new < val:
                             print green+"YOU WIN!"+white
+                            win()
                             play_again(deck)
 
                         if dealers_val_new>val:
                             print red+"DEALER WINS"+white
+                            lose()
                             play_again(deck)
 
                         if dealers_val_new == val:
                             print "PUSH"+white
+                            push()
                             play_again(deck)
 
                 if dealers_val > val:
                     print red+"DEALER WINS"+white
+                    lose()
                     play_again(deck)
                 #else:
                 #    print 'missed'
