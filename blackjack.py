@@ -102,6 +102,7 @@ def show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val,blind=False):
     print '\n'+greentable+"YOUR HAND =",val,
     show_hand(hand,bg=greentable)
     print white
+    showbets()
 
 def blackjack(deck):
 
