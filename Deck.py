@@ -309,4 +309,3 @@ def getinfo(card):
 
    # print num,suit
     return num,suit
-

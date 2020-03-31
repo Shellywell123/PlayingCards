@@ -2,7 +2,7 @@ from deck import *
 from betting import *
 from console import *
 
-
+balance = balance
 
 def evaluate_num(num):
     if num == 'A':
@@ -91,18 +91,21 @@ def show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val,blind=False):
     print'-'*width
     count = counting([dealers_hand[0]]+hand)
     print'-'*width
-        
+
+    global balance
+    global pot
+
     if blind==True:
         print '\n'+bluetable+"DEALER'S HAND =",dealers_val_blind,
-        show_half_hand(dealers_hand,bg=bluetable)
+        show_half_hand_bet(dealers_hand,'dealers',bg=bluetable)
     else:
         print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
-        show_hand(dealers_hand,bg=bluetable)
+        show_hand_bet(dealers_hand,'dealers',bg=bluetable)
 
     print '\n'+greentable+"YOUR HAND =",val,
-    show_hand(hand,bg=greentable)
+    show_hand_bet(hand,'',bg=greentable)
     print white
-    showbets()
+ #   showbets()
 
 def blackjack(deck):
 
@@ -122,8 +125,6 @@ def blackjack(deck):
         blackjack(deck)
 
     buyin(bi)
-
-
 
     def ask(deck,hand,dealers_hand,headless=False):
 
@@ -157,13 +158,17 @@ def blackjack(deck):
                 exit(0)
 
             if (str(opt) == 'hit') or (str(opt) =='h'):
-                deck,hit = draw(1,deck)
-                newcount = counting(hit)
-                count = newcount
-                hand = hand + hit
-                raisee(bi)
-                ask(deck,hand,dealers_hand)
-
+                
+                choice = raisee(bi)
+                if choice == True:
+                    deck,hit = draw(1,deck)
+                    newcount = counting(hit)
+                    count = newcount
+                    hand = hand + hit
+                    ask(deck,hand,dealers_hand)
+                else:
+                    ask(deck,hand,dealers_hand,headless=True)
+                
             if (str(opt)=='stand') or (str(opt)=='s'):
 
                 show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)

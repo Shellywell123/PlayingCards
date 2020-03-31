@@ -13,6 +13,8 @@ def buyin(bet):
     global balance
     global pot
     print balance
+    if bet>balance:
+        '"'+str(bet)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white
     balance = balance - bet
     pot = bet*2
 
@@ -36,18 +38,23 @@ def win():
 def raisee(bet):
     global pot
     global balance
-    balance = balance-bet
-    pot = pot + bet*2
+    if bet>balance:
+        print 'you dont have enough money'
+        return False
+    else:
+        balance = balance-bet
+        pot = pot + bet*2
+        return True
 
 
-def chipsci(price):
+def chipsci(price,bg=white):
     price = str(price)
 
     LE = card_back+'#'
-    RE = '# '+white
+    RE = '# '+bg
 
     L = card_back+'#'+redcard
-    R = card_back+'#'+white
+    R = card_back+'#'+bg
 
     if len(price) == 1:
         a = white+' '
@@ -139,5 +146,55 @@ def show_chips(chipsmessy):
     for n in range(7):
         for chip in chips:
             lines = chip.split('\n')
+            print lines[n],
+        print '\n',
+
+def show_hand_bet(messyhand,chip,bg=white):
+    
+
+    hand = []
+    global balance
+    global pot
+    global balance
+    global pot
+    if chip == 'dealers':
+        chip = pot
+        hand.append(bg+'             \n'*2+'     POT     \n'+chipsci(chip,bg=bg))
+    else:
+        chip=balance
+        hand.append(bg+'             \n'*2+' YOUR BALANCE\n'+chipsci(chip,bg=bg))
+
+    for card in messyhand:
+        num,suit=getinfo(card)
+        hand.append(cardsci(num,suit,bg=bg))
+
+    print bg
+    for n in range(10):
+        for card in hand:
+            lines = card.split('\n')
+            print lines[n],
+        print '\n',
+
+def show_half_hand_bet(messyhand,chip,bg=white):
+    hand = []
+    global balance
+    global pot
+    if chip == 'dealers':
+        chip = pot
+        hand.append(bg+'             \n'*2+'     POT     \n'+chipsci(chip,bg=bg))
+    else:
+        chip=balance
+        hand.append(bg+'             \n'*2+' YOUR BALANCE \n'+chipsci(chip,bg=bg))
+
+    for card in messyhand:
+        num,suit=getinfo(card)
+        hand.append(cardsci(num,suit,bg=bg))
+
+    hand = hand[:-1] + [cardsci('#','#',bg=bg)]
+
+    print bg
+    for n in range(10):
+        for card in hand:
+            lines = card.split('\n')
             print lines[n],
         print '\n',
