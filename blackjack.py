@@ -2,8 +2,6 @@ from deck import *
 from betting import *
 from console import *
 
-balance = balance
-
 def evaluate_num(num):
     if num == 'A':
         return 11
@@ -120,7 +118,11 @@ def blackjack(deck):
     if bi =='exit':
         print 'goodbye ...'
         exit(0)
-    bi = int(bi)
+    try:
+        bi = int(bi)
+    except:
+        print red+'"'+str(bi)+'" invalid input please use integer amount\n'+white
+        blackjack(deck)
     if bi <=0:
         print red+'"'+str(bi)+'" invalid input please use postive amount\n'+white
         blackjack(deck)
