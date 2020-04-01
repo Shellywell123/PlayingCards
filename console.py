@@ -5,4 +5,4 @@ def terminal_size():
         struct.pack('HHHH', 0, 0, 0, 0)))
     return tw, th
 
-#print('Number of columns and Rows: ',terminal_size())
+# print('Number of columns and Rows: ',terminal_size())

@@ -157,7 +157,7 @@ def blackjack(deck):
 
         else:
 
-            opt=raw_input("\n{}Hit or Stand?{}\n".format(yellow,white))
+            opt=raw_input("\n{}Hit, Stand or Fold?{}\n".format(yellow,white))
 
             if str(opt) == 'exit':
                 print 'goodbye ...'
@@ -174,7 +174,12 @@ def blackjack(deck):
                     ask(deck,hand,dealers_hand)
                 else:
                     ask(deck,hand,dealers_hand,headless=True)
-                
+            
+            if (str(opt)=='fold') or (str(opt)=='f'):
+                print 'YOU FOLD'
+                lose()
+                play_again(deck)
+
             if (str(opt)=='stand') or (str(opt)=='s'):
 
                 show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
@@ -231,8 +236,8 @@ def blackjack(deck):
                 ''',white
                 ask(deck,hand,dealers_hand,headless=True)
 
-            if str(opt) not in ['stant','s','hit','h','help','exit']:
-                print red,'"'+str(opt)+'" is not a valid input, pls type "hit/h" or "stand/s".\n For more options type "help".',white
+            if str(opt) not in ['stant','s','hit','h','help','exit','fold','f']:
+                print red,'"'+str(opt)+'" is not a valid input, pls type "hit/h","stand/s" o "Fold/f".\n For more options type "help".',white
                 ask(deck,hand,dealers_hand,headless=True)
 
     ask(deck,hand,dealers_hand)
