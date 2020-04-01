@@ -2,6 +2,19 @@ from blackjack import *
 
 balance = 1000
 pot = 0
+last_bet = 0
+
+def set_balance(n):
+    global balance
+    balance = n
+
+def ret_balance():
+    global balance
+    return balance
+
+def ret_prev_bet():
+    global last_bet
+    return last_bet
 
 def showbets():
     global balance
@@ -11,12 +24,14 @@ def showbets():
 
 def buyin(bet):
     global balance
+    global last_bet
     global pot
     print balance
     if bet>balance:
         '"'+str(bet)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white
     balance = balance - bet
     pot = bet*2
+    last_bet = bet
 
 def push():
     global pot
@@ -46,6 +61,13 @@ def raisee(bet):
         pot = pot + bet*2
         return True
 
+def broke_check():
+    global balance
+
+    if balance <= 0:
+        return True
+    else:
+        return False
 
 def chipsci(price,bg=white):
     price = str(price)

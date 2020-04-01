@@ -65,7 +65,6 @@ def cardsci(num,suit,bg=white):
         numtop = num
         numbot = num
      
-
     a=blackcard+' '
     b=blackcard+' '
     c=blackcard+' '

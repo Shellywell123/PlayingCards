@@ -66,10 +66,18 @@ def evaluate_num_hand(hand):
     return hand_val
 
 def play_again(deck):
+
     width,hight = terminal_size()
     print'-'*width
 
-    opt2 = raw_input('play again?\n')
+    bc = broke_check()
+
+    if bc == True:
+        print 'YOU ARE BROKE'
+        set_balance(1000)
+        opt2 = raw_input('start again?\n')
+    else:
+        opt2 = raw_input('play again?\n')
 
     if opt2 == 'yes' or opt2 =='y' or opt2 =='':
         blackjack(deck)
@@ -90,9 +98,6 @@ def show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val,blind=False):
     count = counting([dealers_hand[0]]+hand)
     print'-'*width
 
-    global balance
-    global pot
-
     if blind==True:
         print '\n'+bluetable+"DEALER'S HAND =",dealers_val_blind,
         show_half_hand_bet(dealers_hand,'dealers',bg=bluetable)
@@ -112,12 +117,21 @@ def blackjack(deck):
     deck,dealers_hand = draw(2,deck)
     deck,hand = draw(2,deck)
     
+    balance = ret_balance()
+    print 'ret bal='+str(balance)
+
     showbets()
-    global balance
-    bi = raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)\n$")
+    prev_bet =  ret_prev_bet()
+    if prev_bet>0:
+        prev_bet_str = "\nPress eneter to bet $"+str(prev_bet)+" again."
+    else:
+        prev_bet_str = ''
+    bi = raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+"\n$")
     if bi =='exit':
         print 'goodbye ...'
         exit(0)
+    if bi == '':
+        bi = prev_bet
     try:
         bi = int(bi)
     except:
