@@ -2,6 +2,9 @@ from deck import *
 from betting import *
 from console import *
 
+printer = [[0,0]]
+winlose = [[0,0]]
+
 def evaluate_num(num):
     if num == 'A':
         return 11
@@ -32,15 +35,47 @@ def counting(hand):
             count = count
             print num,'= +0'
     
-    print 'Total Count = ',count
-
-    #import matplotlib.pyplot as plt
-    #plt.xlabel('num of cards')
-    #plt.ylabel('count')
-    #plt.plot(len(hand),count)
-    #plt.grid()
-    #plt.show()
+    print 'Total Count = ',count    
+    save_count(len(hand),count)
     return count
+
+def save_winlose(wl):
+    global winlose
+    global printer
+
+    cnum = printer[-1][0]
+    last_wl = winlose[-1][1]
+    winlose.append([cnum,last_wl+wl])
+
+
+def save_count(cnum,count):
+    global printer
+    last_cnum = printer[-1][0]
+    printer.append([last_cnum+cnum,count])
+
+def plotcount():
+    import matplotlib.pyplot as plt
+
+    global printer
+    x= []
+    y=[]
+    for n in range (0,len(printer)):
+        x.append(printer[n][0])
+        y.append(printer[n][1])
+
+    global winlose
+    x1=[]
+    y1=[]
+    for n in range(0,len(winlose)):
+        x1.append(winlose[n][0])
+        y1.append(winlose[n][1])
+
+    plt.xlabel('num of cards')
+    plt.plot(x,y,label='count')
+    plt.plot(x1,y1,label='win/lose')
+    plt.legend()
+    plt.grid()
+    plt.show()
 
 def evaluate_num_hand(hand):
     hand_val = 0
@@ -161,12 +196,14 @@ def blackjack(deck):
             show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
             print green,val,'!',white
             win()
+            save_winlose(1)
             play_again(deck)
 
         if val>21:
             show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
             print red+str(val)+' BUST!'+white
             lose()
+            save_winlose(-1)
             play_again(deck)
 
         else:
@@ -192,6 +229,7 @@ def blackjack(deck):
             if (str(opt)=='fold') or (str(opt)=='f'):
                 print 'YOU FOLD'
                 lose()
+                save_winlose(-1)
                 play_again(deck)
 
             if (str(opt)=='stand') or (str(opt)=='s'):
@@ -201,6 +239,7 @@ def blackjack(deck):
                 if dealers_val == val:
                     print "PUSH",white
                     push()
+                    save_winlose(0)
                     play_again(deck)
 
                 if dealers_val < val:
@@ -215,6 +254,7 @@ def blackjack(deck):
                         print red+'DEALER BUST'+white
                         print green+"YOU WIN!"+white
                         win()
+                        save_winlose(1)
                         play_again(deck)
 
                     else:
@@ -222,24 +262,32 @@ def blackjack(deck):
                         if dealers_val_new < val:
                             print green+"YOU WIN!"+white
                             win()
+                            save_winlose(1)
                             play_again(deck)
 
                         if dealers_val_new>val:
                             print red+"DEALER WINS"+white
                             lose()
+                            save_winlose(-1)
                             play_again(deck)
 
                         if dealers_val_new == val:
                             print "PUSH"+white
                             push()
+                            save_winlose(0)
                             play_again(deck)
 
                 if dealers_val > val:
                     print red+"DEALER WINS"+white
                     lose()
+                    save_winlose(-1)
                     play_again(deck)
                 #else:
                 #    print 'missed'
+
+            if str(opt) == 'plot':
+                plotcount()
+                play_again(deck)
 
             if str(opt) == 'help':
                 print green,'''\nOptions

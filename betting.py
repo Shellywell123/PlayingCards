@@ -50,6 +50,7 @@ def win():
     balance = balance+pot
     pot = 0
 
+
 def raisee(bet):
     global pot
     global balance
