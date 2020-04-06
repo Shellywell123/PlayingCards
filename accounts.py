@@ -38,7 +38,8 @@ def user_query():
             print 'Welcome '+name+'!'
             make_account(name)
     if name == 'exit':
-        exit_process()
+        print 'Goodbye ...'
+        exit(0)
     else:
         pass
 
