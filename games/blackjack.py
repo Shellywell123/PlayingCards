@@ -3,6 +3,7 @@ from betting import *
 from console import *
 from accounts import *
 
+
 #printer = [[0,0]]
 #winlose = [[0,0]]
 count = 0
@@ -166,6 +167,7 @@ def blackjack(deck):
         val = evaluate_num_hand(hand)
         dealers_val = evaluate_num_hand(dealers_hand)
         dealers_val_blind = evaluate_num_hand([dealers_hand[0]])
+        save_vals(val,dealers_val)
 
         if headless==True:
             pass
@@ -317,6 +319,7 @@ def blackjack_CPU(deck,lim):
             val = evaluate_num_hand(hand)
             dealers_val = evaluate_num_hand(dealers_hand)
             dealers_val_blind = evaluate_num_hand([dealers_hand[0]])
+            save_vals(val,dealers_val)
 
             if headless==True:
                 pass

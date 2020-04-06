@@ -5,6 +5,8 @@ count_stat      = [[0,0]]
 bet_stat        = [[0,0]]
 bal_stat        = [[0,1000]]
 cardsdrawn_stat = 0
+hand_vals       = [[0,0]]
+dealers_hand_vals     = [[0,0]]
 
 def increase_drawncount(n):
     global cardsdrawn_stat
@@ -16,6 +18,13 @@ def save_winlose(wl):
 
     last_wl = wl_stat[-1][1]
     wl_stat.append([cardsdrawn_stat,last_wl+wl])
+
+def save_vals(val,dealers_val):
+    global hand_vals
+    global dealers_hand_vals
+    global cardsdrawn_stat
+    hand_vals.append([cardsdrawn_stat,val])
+    dealers_hand_vals.append([cardsdrawn_stat,dealers_val])
 
 def save_count(count):
     global count_stat
@@ -33,6 +42,7 @@ def save_bet(b):
     bet_stat.append([cardsdrawn_stat,b])
 
 def deck_lines(ax,carddata,datadata):
+    s=1.0
     linetop = max(datadata)
     print linetop
     linebot = min(datadata)
@@ -49,11 +59,14 @@ def deck_lines(ax,carddata,datadata):
             for i in [linebot,linetop]:
                 x.append(52*n)
                 y.append(i)
-                ax.plot(x,y,alpha=0.5)
+                ax.plot(x,y,alpha=0.5,linewidth=s,c='k')
                 
 def plot_stats(name):
 
     title = name+': Session playing Stats'
+    s=1.0
+    c1='blue'
+    c2='red'
     fig, ((ax1,ax2),(ax3,ax4),(ax5,ax6)) = plt.subplots(nrows=3, ncols=2,figsize=(10,6),num=title)
     fig.suptitle(title)
 
@@ -67,7 +80,7 @@ def plot_stats(name):
   #  fig.subplot(221)
     ax1.set_ylabel('Count')
     ax1.set_xlabel('Number of cards')
-    ax1.plot(x, y)
+    ax1.plot(x, y,linewidth=s,c=c1)
     deck_lines(ax1,x,y)
     #ax1.legend()
   #  ax1.grid()
@@ -82,7 +95,7 @@ def plot_stats(name):
   #  fig.subplot(222)
     ax2.set_xlabel('Number of cards')
     ax2.set_ylabel('Win/Lose')
-    ax2.plot(x1, y1)
+    ax2.plot(x1, y1,linewidth=s,c=c1)
     deck_lines(ax2,x1,y1)
     #ax2.legend()
    # ax2.grid()
@@ -97,7 +110,7 @@ def plot_stats(name):
    # fig.subplot(223)h
     ax3.set_xlabel('Number of cards')
     ax3.set_ylabel('Bet [$]')
-    ax3.plot(x2, y2)
+    ax3.plot(x2, y2,linewidth=s,c=c1)
     deck_lines(ax3,x2,y2)
     #ax3.legend()
    # ax3.grid()
@@ -114,12 +127,30 @@ def plot_stats(name):
     ax4.set_xlabel('Number of cards')
     ax4.set_ylabel('Balance [$]')
     deck_lines(ax4,x3,y3)
-    ax4.plot(x3, y3)
+    ax4.plot(x3, y3,linewidth=s,c=c1)
     #ax4.legend()
    # ax4.grid()
 
+    global hand_vals
+    y4=[]
+    x4=[]
+
+    x41 =[]
+    y41 = []
+
+    for n in range (0,len(hand_vals)):
+        x4.append(hand_vals[n][0])
+        y4.append(hand_vals[n][1])
+
+        x41.append(dealers_hand_vals[n][0])
+        y41.append(dealers_hand_vals[n][1])
+
     ax5.set_xlabel('Number of cards')
     ax5.set_ylabel('Hand Value')
+    deck_lines(ax5,x4,y4)
+    ax5.plot(x4, y4,label=name,linewidth=s,c=c1)
+    ax5.plot(x41, y41,label='dealer',linewidth=s,c=c2)
+    ax5.legend()
     ax5.grid()
 
     ax6.set_xlabel('Number of cards')

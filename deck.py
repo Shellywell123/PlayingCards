@@ -7,6 +7,7 @@ import os
 try:
     os.system('chcp 65001')
 except:
+    print('this can be ignored if running on  \n')
     pass
 
 red = '\033[91m'

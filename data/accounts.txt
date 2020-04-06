@@ -1,5 +1,5 @@
-ben:995
+ben:495
 kevin:1100
-CPU:860
+CPU:740
 Awobabobob:1000
 badmotherfucker:950

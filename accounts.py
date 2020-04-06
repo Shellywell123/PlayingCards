@@ -30,22 +30,27 @@ def set_name(name_):
 def user_query():
     global name 
     users,user_balances = get_accounts()
-    if name == '':
-        name = raw_input("Who are you?\n")
-    else:
-        if name in users:
-            user = name
-            print 'Welcome back '+name+'!'
-            user_balance = user_balances[users.index(user)]
-            set_balance(int(user_balance))
-        else:
-            print 'Welcome '+name+'!'
-            make_account(name)
-    if name == 'exit':
-        print 'Goodbye ...'
-        exit(0)
-    else:
-        pass
+    
+    if name in users:
+        user = name
+        print 'Welcome back '+name+'!'
+        user_balance = user_balances[users.index(user)]
+        set_balance(int(user_balance))
+
+    if name not in users:
+
+        if name == '':
+            name = raw_input("Who are you?\n")
+
+        if name == 'exit':
+            print 'Goodbye ...'
+            exit(0)
+        
+        print 'Welcome '+name+'!'
+        make_account(name)
+
+    
+  
 
 def make_account(name):
     users,bals= get_accounts()
@@ -54,7 +59,6 @@ def make_account(name):
     text_file.close()
 
 def refresh_account():
-
     name = who_am_i()
     users,balances = get_accounts()
 
