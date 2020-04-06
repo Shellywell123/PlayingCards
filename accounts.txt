@@ -1,6 +1,1 @@
-ben:54
-cosmo:750
-rahul:1000
-kevin:1000
-sudi:1000
-exit:1000
+ben:13000

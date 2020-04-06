@@ -283,11 +283,15 @@ def show_hand(messyhand,bg=white):
         hand.append(cardsci(num,suit,bg=bg))
 
     print bg
+    string = ''
     for n in range(10):
         for card in hand:
             lines = card.split('\n')
             print lines[n],
+            string=string+lines[n]
         print '\n',
+        string=string+'\n'
+    return string
 
 def show_half_hand(messyhand,bg=white):
     hand = []
