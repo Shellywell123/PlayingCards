@@ -1,3 +1,3 @@
 ben:800
 kevin:1100
-CPU:810
+CPU:890

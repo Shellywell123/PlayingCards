@@ -137,5 +137,6 @@ def plot_stats(name):
     print '-'*15
 
     fig.tight_layout(rect=[0.0,0.0,1.0,0.95])
+    
+    plt.savefig(u'Images/'+name+'_stats.pdf')
     plt.show()
-    plt.savefig('Images/'+name+'_stats.pdf')
