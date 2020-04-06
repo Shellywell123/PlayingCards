@@ -133,7 +133,7 @@ def blackjack(deck):
     showbets()
     prev_bet =  ret_prev_bet()
     if prev_bet>0:
-        prev_bet_str = "\nPress eneter to bet $"+str(prev_bet)+" again."
+        prev_bet_str = "\nPress enter to bet $"+str(prev_bet)+" again."
     else:
         prev_bet_str = ''
     bi = raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+"\n$")

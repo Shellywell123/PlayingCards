@@ -2,7 +2,7 @@ from betting import *
 from blackjack import *
 
 name = ''
-accounts_path = "accounts.txt"
+accounts_path = "data/accounts.txt"
 
 def get_accounts():
     text_file = open(accounts_path, "r")
@@ -26,15 +26,16 @@ def get_accounts():
 def user_query():
     global name 
     if name == '':
-        name = raw_input("who are you?\n")
+        name = raw_input("Who are you?\n")
         users,user_balances = get_accounts()
 
         if name in users:
             user = name
-            print 'Welcome back '+name
+            print 'Welcome back '+name+'!'
             user_balance = user_balances[users.index(user)]
             set_balance(int(user_balance))
         else:
+            print 'Welcome '+name+'!'
             make_account(name)
     if name == 'exit':
         exit_process()
