@@ -1,7 +1,7 @@
 # PlayingCards
 Python package for simulating cards games and shuffles in terminal! Written during Isolation 2020.
 
-Images/screenshot.png
+![screenshot](Images/screenshot.png)
 
 ### How to setup:
 1) git clone https://github.com/Shellywell123/PlayingCards.git
