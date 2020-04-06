@@ -1,4 +1,4 @@
-from blackjack import *
+from games.blackjack import *
 from stats import *
 
 balance = 1000

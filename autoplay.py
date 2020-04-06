@@ -23,7 +23,7 @@ def start(text_input):
 
 
 from deck import *
-from blackjack import *
+from games.blackjack import *
 
 deck = new_deck()
 #show_deck(deck)

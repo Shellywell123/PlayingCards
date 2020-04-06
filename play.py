@@ -1,5 +1,5 @@
 from deck import *
-from blackjack import *
+from games.blackjack import *
 
 deck = new_deck()
 #show_deck(deck)
