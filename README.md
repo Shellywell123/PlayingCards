@@ -2,6 +2,7 @@
 Python package for simulating cards games and shuffles in terminal! Written during Isolation 2020.
 
 ![screenshot](Images/screenshot.png)
+![CPU player stats](Images/CPU_stats.pdf)
 
 ### How to setup:
 1) git clone https://github.com/Shellywell123/PlayingCards.git
@@ -16,6 +17,8 @@ Python package for simulating cards games and shuffles in terminal! Written duri
 -blackjack game play\
 -game play stats\
 -accounts and leaderboard
+
+
 
 ### Coming Soon:
 
