@@ -1,9 +1,11 @@
 from deck import *
 from betting import *
 from console import *
+from accounts import *
 
-printer = [[0,0]]
-winlose = [[0,0]]
+#printer = [[0,0]]
+#winlose = [[0,0]]
+count = 0
 
 def evaluate_num(num):
     if num == 'A':
@@ -36,46 +38,8 @@ def counting(hand):
             print num,'= +0'
     
     print 'Total Count = ',count    
-    save_count(len(hand),count)
+    save_count(count)
     return count
-
-def save_winlose(wl):
-    global winlose
-    global printer
-
-    cnum = printer[-1][0]
-    last_wl = winlose[-1][1]
-    winlose.append([cnum,last_wl+wl])
-
-
-def save_count(cnum,count):
-    global printer
-    last_cnum = printer[-1][0]
-    printer.append([last_cnum+cnum,count])
-
-def plotcount():
-    import matplotlib.pyplot as plt
-
-    global printer
-    x= []
-    y=[]
-    for n in range (0,len(printer)):
-        x.append(printer[n][0])
-        y.append(printer[n][1])
-
-    global winlose
-    x1=[]
-    y1=[]
-    for n in range(0,len(winlose)):
-        x1.append(winlose[n][0])
-        y1.append(winlose[n][1])
-
-    plt.xlabel('num of cards')
-    plt.plot(x,y,label='count')
-    plt.plot(x1,y1,label='win/lose')
-    plt.legend()
-    plt.grid()
-    plt.show()
 
 def evaluate_num_hand(hand):
     hand_val = 0
@@ -100,6 +64,12 @@ def evaluate_num_hand(hand):
 
     return hand_val
 
+def exit_process():
+    print 'goodbye {}...'.format(who_am_i())
+    refresh_account()
+    leaderboard()
+    exit(0)
+
 def play_again(deck):
 
     width,hight = terminal_size()
@@ -117,10 +87,14 @@ def play_again(deck):
     if opt2 == 'yes' or opt2 =='y' or opt2 =='':
         blackjack(deck)
     if opt2 =='no' or opt2 =='n' or opt2 =='exit':
-        exit(0)
-    if opt2 not in ['n','no','yes','y','','exit']:
+        exit_process()
+    if opt2 == 'stats':
+        plot_stats()
+        play_again(deck)
+    if opt2 not in ['n','no','yes','y','','exit','stats']:
         print '"'+opt2+'" is not a valid input, pls type "yes/y" or "no/n"'
         play_again(deck)
+    
 
 
 def clear():
@@ -148,12 +122,13 @@ def show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val,blind=False):
 def blackjack(deck):
 
     #initalise games
+    user_query()
     
     deck,dealers_hand = draw(2,deck)
     deck,hand = draw(2,deck)
     
     balance = ret_balance()
-    print 'ret bal='+str(balance)
+   # print 'ret bal='+str(balance)
 
     showbets()
     prev_bet =  ret_prev_bet()
@@ -162,9 +137,11 @@ def blackjack(deck):
     else:
         prev_bet_str = ''
     bi = raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+"\n$")
+    if bi == 'stats':
+        plot_stats()
+        blackjack(deck)
     if bi =='exit':
-        print 'goodbye ...'
-        exit(0)
+        exit_process()        
     if bi == '':
         bi = prev_bet
     try:
@@ -178,10 +155,11 @@ def blackjack(deck):
     if bi>balance:
         print red+'"'+str(bi)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white
         blackjack(deck)
-
+    
+        
     buyin(bi)
 
-    def ask(deck,hand,dealers_hand,headless=False):
+    def ask(deck,hand,dealers_hand,headless=False,auto=False):
 
         val = evaluate_num_hand(hand)
         dealers_val = evaluate_num_hand(dealers_hand)
@@ -208,100 +186,103 @@ def blackjack(deck):
 
         else:
 
-            opt=raw_input("\n{}Hit, Stand or Fold?{}\n".format(yellow,white))
+            if auto==True:
+                pass
+            else:
 
-            if str(opt) == 'exit':
-                print 'goodbye ...'
-                exit(0)
+                opt=raw_input("\n{}Hit, Stand or Fold?{}\n".format(yellow,white))
 
-            if (str(opt) == 'hit') or (str(opt) =='h'):
+                if str(opt) == 'exit':
+                    exit_process()
+
+                if (str(opt) == 'hit') or (str(opt) =='h'):
+                    
+                    choice = raisee(bi)
+                    if choice == True:
+                        deck,hit = draw(1,deck)
+                        newcount = counting(hit)
+                        count = newcount
+                        hand = hand + hit
+                        ask(deck,hand,dealers_hand,auto=auto)
+                    else:
+                        ask(deck,hand,dealers_hand,headless=True,auto=auto)
                 
-                choice = raisee(bi)
-                if choice == True:
-                    deck,hit = draw(1,deck)
-                    newcount = counting(hit)
-                    count = newcount
-                    hand = hand + hit
-                    ask(deck,hand,dealers_hand)
-                else:
-                    ask(deck,hand,dealers_hand,headless=True)
-            
-            if (str(opt)=='fold') or (str(opt)=='f'):
-                print 'YOU FOLD'
-                lose()
-                save_winlose(-1)
-                play_again(deck)
-
-            if (str(opt)=='stand') or (str(opt)=='s'):
-
-                show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
-                print 'YOU STAND'
-                if dealers_val == val:
-                    print "PUSH",white
-                    push()
-                    save_winlose(0)
+                if (str(opt)=='fold') or (str(opt)=='f'):
+                    print 'YOU FOLD'
+                    lose()
+                    save_winlose(-1)
                     play_again(deck)
 
-                if dealers_val < val:
-                    
-                    deack,dealers_hit = draw(1,deck)
-                    dealers_hand = dealers_hand + dealers_hit
-                    dealers_val_new = evaluate_num_hand(dealers_hand)
-                    show_table(dealers_hand,hand,dealers_val_new,dealers_val_blind,val)
-                    print yellow+'DEALER HITS'+white
+                if (str(opt)=='stand') or (str(opt)=='s'):
 
-                    if dealers_val_new>21:
-                        print red+'DEALER BUST'+white
-                        print green+"YOU WIN!"+white
-                        win()
-                        save_winlose(1)
+                    show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
+                    print 'YOU STAND'
+                    if dealers_val == val:
+                        print "PUSH",white
+                        push()
+                        save_winlose(0)
                         play_again(deck)
 
-                    else:
+                    if dealers_val < val:
+                        
+                        deack,dealers_hit = draw(1,deck)
+                        dealers_hand = dealers_hand + dealers_hit
+                        dealers_val_new = evaluate_num_hand(dealers_hand)
+                        show_table(dealers_hand,hand,dealers_val_new,dealers_val_blind,val)
+                        print yellow+'DEALER HITS'+white
 
-                        if dealers_val_new < val:
+                        if dealers_val_new>21:
+                            print red+'DEALER BUST'+white
                             print green+"YOU WIN!"+white
                             win()
                             save_winlose(1)
                             play_again(deck)
 
-                        if dealers_val_new>val:
-                            print red+"DEALER WINS"+white
-                            lose()
-                            save_winlose(-1)
-                            play_again(deck)
+                        else:
 
-                        if dealers_val_new == val:
-                            print "PUSH"+white
-                            push()
-                            save_winlose(0)
-                            play_again(deck)
+                            if dealers_val_new < val:
+                                print green+"YOU WIN!"+white
+                                win()
+                                save_winlose(1)
+                                play_again(deck)
 
-                if dealers_val > val:
-                    print red+"DEALER WINS"+white
-                    lose()
-                    save_winlose(-1)
+                            if dealers_val_new>val:
+                                print red+"DEALER WINS"+white
+                                lose()
+                                save_winlose(-1)
+                                play_again(deck)
+
+                            if dealers_val_new == val:
+                                print "PUSH"+white
+                                push()
+                                save_winlose(0)
+                                play_again(deck)
+
+                    if dealers_val > val:
+                        print red+"DEALER WINS"+white
+                        lose()
+                        save_winlose(-1)
+                        play_again(deck)
+                    #else:
+                    #    print 'missed'
+
+                if str(opt) == 'stats':
+                    plot_stats()
                     play_again(deck)
-                #else:
-                #    print 'missed'
 
-            if str(opt) == 'plot':
-                plotcount()
-                play_again(deck)
+                if str(opt) == 'help':
+                    print green,'''\nOptions
+    -------------------------------
+    "hit" or "h"   = another card,
+    "stand" or "s" = stick with current hand,
+    "exit"  = quit game
+                    ''',white
+                    ask(deck,hand,dealers_hand,headless=True,auto=auto)
 
-            if str(opt) == 'help':
-                print green,'''\nOptions
--------------------------------
-"hit" or "h"   = another card,
-"stand" or "s" = stick with current hand,
-"exit"  = quit game
-                ''',white
-                ask(deck,hand,dealers_hand,headless=True)
+                if str(opt) not in ['stant','s','hit','h','help','exit','fold','f']:
+                    print red,'"'+str(opt)+'" is not a valid input, pls type "hit/h","stand/s" o "Fold/f".\n For more options type "help".',white
+                    ask(deck,hand,dealers_hand,headless=True,auto=auto)
 
-            if str(opt) not in ['stant','s','hit','h','help','exit','fold','f']:
-                print red,'"'+str(opt)+'" is not a valid input, pls type "hit/h","stand/s" o "Fold/f".\n For more options type "help".',white
-                ask(deck,hand,dealers_hand,headless=True)
-
-    ask(deck,hand,dealers_hand)
+    ask(deck,hand,dealers_hand,auto=False)
 
 

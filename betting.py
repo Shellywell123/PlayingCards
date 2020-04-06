@@ -1,4 +1,5 @@
 from blackjack import *
+from stats import *
 
 balance = 1000
 pot = 0
@@ -32,24 +33,27 @@ def buyin(bet):
     balance = balance - bet
     pot = bet*2
     last_bet = bet
+    save_bet(bet)
 
 def push():
     global pot
     global balance
     balance = balance + pot/2
+    save_bal(balance)
     pot = 0
 
 def lose():
     global pot
     global balance
+    save_bal(balance)
     pot = 0
 
 def win():
     global pot
     global balance
     balance = balance+pot
+    save_bal(balance)
     pot = 0
-
 
 def raisee(bet):
     global pot
@@ -60,6 +64,8 @@ def raisee(bet):
     else:
         balance = balance-bet
         pot = pot + bet*2
+
+        save_bet(bet)
         return True
 
 def broke_check():

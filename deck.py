@@ -1,3 +1,5 @@
+from stats import *
+
 red = '\033[91m'
 redcard ='\033[31;47m'
 yellow ='\033[93m'
@@ -54,6 +56,7 @@ def fan(deck):
 def draw(n,deck):
     hand = deck[:n]
     deck2 = deck[2:]+deck[:2]
+    increase_drawncount(n)
     return deck2,hand
 
 
