@@ -5,4 +5,4 @@ count_stat      = [[0,0]]
 bet_stat        = [[0,0]]
 bal_stat        = [[0,1000]]
 
-plot_stats()
+plot_stats('ben')
