@@ -11,9 +11,9 @@ Python package for simulating cards games and shuffles in terminal! Written duri
 
 -docstrings\n
 -dealer blackjack insurance\\n
--chips breakdown\\
--fold option\\
--texas holdem\\
+-chips breakdown\\newline
+-fold option\newline
+-texas holdem\
 -will make things classy\\
 -will make python 3 if cba\\
 -automated plays \\
