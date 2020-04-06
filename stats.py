@@ -105,4 +105,4 @@ def plot_stats(name):
 
     fig.tight_layout()
     plt.show()
-    plt.savefig('data/'+name+'_stats.pdf')
+    plt.savefig('Images/'+name+'_stats.pdf')
