@@ -9,8 +9,8 @@ Python package for simulating cards games and shuffles in terminal! Written duri
 
 ### Coming Soon:
 
--docstrings\\
--dealer blackjack insurance\\
+-docstrings\n
+-dealer blackjack insurance\\n
 -chips breakdown\\
 -fold option\\
 -texas holdem\\
