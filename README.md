@@ -22,6 +22,7 @@ Python package for simulating cards games and shuffles in terminal! Written duri
 
 ### Coming Soon:
 
+-windows cmd compatibility\
 -docstrings\
 -dealer blackjack insurance\
 -chips breakdown\

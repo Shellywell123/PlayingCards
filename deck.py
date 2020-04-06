@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
 from stats import *
+from colorama import init
+init()
 
 red = '\033[91m'
 redcard ='\033[31;47m'
