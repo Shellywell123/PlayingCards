@@ -9,6 +9,14 @@ Python package for simulating cards games and shuffles in terminal! Written duri
 ### How to run:
 1) execute play.py
 
+### Features:
+-card asci art\
+-simulated real shuffles\
+-random computer shuffles\
+-blackjack game play\
+-game play stats\
+-accounts and leaderboard
+
 ### Coming Soon:
 
 -docstrings\
