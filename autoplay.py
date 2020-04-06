@@ -22,5 +22,17 @@ def start(text_input):
     sys.stdin = f1
 
 
-start('25')
-run('h')
+from deck import *
+from blackjack import *
+
+deck = new_deck()
+#show_deck(deck)
+deck = riffle(deck)
+shuffle(deck)
+shuffle(deck)
+deck = riffle(deck)
+shuffle(deck)
+shuffle(deck)
+#show_deck(deck)
+#show_backs()
+blackjack_CPU(deck,100)

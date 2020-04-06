@@ -23,12 +23,16 @@ def get_accounts():
 
     return users,balances
 
+def set_name(name_):
+    global name
+    name = name_
+
 def user_query():
     global name 
+    users,user_balances = get_accounts()
     if name == '':
         name = raw_input("Who are you?\n")
-        users,user_balances = get_accounts()
-
+    else:
         if name in users:
             user = name
             print 'Welcome back '+name+'!'

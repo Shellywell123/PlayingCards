@@ -32,10 +32,10 @@ def save_bet(b):
     global bet_stat
     bet_stat.append([cardsdrawn_stat,b])
 
-def plot_stats():
+def plot_stats(name):
 
     fig, ((ax1,ax2),(ax3,ax4)) = plt.subplots(nrows=2, ncols=2,figsize=(12,6))
-    fig.suptitle('PLaying Stats')
+    fig.suptitle('Playing Stats '+name)
 
     global count_stat
     x = []
@@ -48,7 +48,7 @@ def plot_stats():
     ax1.set_ylabel('count')
     ax1.set_xlabel('num of cards')
     ax1.plot(x, y)
-    ax1.legend()
+    #ax1.legend()
     ax1.grid()
 
     global wl_stat
@@ -62,7 +62,7 @@ def plot_stats():
     ax2.set_xlabel('num of cards')
     ax2.set_ylabel('win lose')
     ax2.plot(x1, y1)
-    ax2.legend()
+    #ax2.legend()
     ax2.grid()
 
     global bet_stat
@@ -76,7 +76,7 @@ def plot_stats():
     ax3.set_xlabel('num of cards')
     ax3.set_ylabel('bet [$]')
     ax3.plot(x2, y2)
-    ax3.legend()
+    #ax3.legend()
     ax3.grid()
 
     global bal_stat
@@ -91,7 +91,7 @@ def plot_stats():
     ax4.set_xlabel('num of cards')
     ax4.set_ylabel('balance [$]')
     ax4.plot(x3, y3)
-    ax4.legend()
+    #ax4.legend()
     ax4.grid()
 
     print '\n'+'-'*15
@@ -105,3 +105,4 @@ def plot_stats():
 
     fig.tight_layout()
     plt.show()
+    plt.savefig('data/'+name+'_stats.pdf')
