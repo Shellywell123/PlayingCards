@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from games.blackjack import *
 from stats import *
 

@@ -3,11 +3,17 @@ from stats import *
 from colorama import init
 init()
 
+import os
+try:
+    os.system('chcp 65001')
+except:
+    pass
+
 red = '\033[91m'
-redcard ='\033[31;47m'
+redcard ='\033[6;31;47m'
 yellow ='\033[93m'
 blue = '\033[94m'
-blackcard = '\033[30;47m'
+blackcard = '\033[6;30;47m'
 white='\033[0m'
 green='\033[32m'
 greentable =  '\033[40;42m'
