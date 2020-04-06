@@ -1,4 +1,4 @@
-ben:64
+ben:54
 cosmo:750
 rahul:1000
 kevin:1000
