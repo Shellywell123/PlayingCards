@@ -1,5 +1,5 @@
 # PlayingCards
-Python package for simulating cards games and shuffles in terminal! Written during Isolation 2020.
+Python 2.7 package for simulating cards games and shuffles in terminal! Written during Isolation 2020.
 
 ![screenshot](Images/screenshot.png)
 ![CPU player stats](Images/CPU_stats.pdf)
