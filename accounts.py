@@ -49,9 +49,6 @@ def user_query():
         print 'Welcome '+name+'!'
         make_account(name)
 
-    
-  
-
 def make_account(name):
     users,bals= get_accounts()
     text_file = open(accounts_path, "a")
