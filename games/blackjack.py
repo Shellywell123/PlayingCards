@@ -142,7 +142,6 @@ def blackjack(deck):
         print red+'"'+str(bi)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white
         blackjack(deck)
     
-        
     buyin(bi)
 
     def ask(deck,hand,dealers_hand,headless=False):
