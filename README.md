@@ -5,14 +5,15 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 ![CPU player stats](Images/CPU_stats.pdf)
 
 ### How to setup:
-1) git clone https://github.com/Shellywell123/PlayingCards.git
+1) "git clone https://github.com/Shellywell123/PlayingCards.git"
 
 ### How to update:
-1) cd PlayingCards/\
-2) git pull (to update)\
+1) "cd PlayingCards/"
+2) "git pull (to update)"
 
 ### How to run:
 1) execute play.py
+   "python play.py"
 
 ### Features:
 -windows cmd & linux terminal compatiable\
