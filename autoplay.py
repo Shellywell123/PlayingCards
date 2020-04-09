@@ -1,6 +1,4 @@
 
-
-
 def run(text_input):
     import sys
     import StringIO
@@ -9,7 +7,6 @@ def run(text_input):
     sys.stdin = f
     f.close()
     sys.stdin = f1
-
 
 def start(text_input):
     import sys
@@ -20,7 +17,6 @@ def start(text_input):
     import play
     f.close()
     sys.stdin = f1
-
 
 from deck import *
 from games.blackjack import *

@@ -2,6 +2,7 @@
 #from games.blackjack import *
 from deck import *
 from stats import *
+from general.colours import *
 
 balance = 1000
 pot = 0

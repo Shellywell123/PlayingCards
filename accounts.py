@@ -1,5 +1,5 @@
 from betting import *
-from general import *
+from general.general import *
 
 name = ''
 accounts_path = "data/accounts.txt"

@@ -1,7 +1,8 @@
 from deck import *
 from betting import *
-from console import *
-from general import *
+from general.console import *
+from general.general import *
+from general.colours import *
 from accounts import *
 
 def show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False):
@@ -66,17 +67,12 @@ def texas_holdem(deck):
     showbets()
     prev_bet =  ret_prev_bet()
     if prev_bet>0:
-        prev_bet_str = "\nPress enter to bet $"+str(prev_bet)+" again."
+        prev_bet_str = "\nPress enter to bet "+input_colour+"$"+str(prev_bet)+output_colour+" again."
     else:
         prev_bet_str = ''
-    bi = raw_input_bens("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+"\n$")
-    if bi == 'stats':
-        leaderboard()
-        my_name = who_am_i()
-        plot_stats(my_name)
-        texas_holdem(deck)
-    if bi =='exit':
-        exit_process()        
+    bi = raw_input_bens("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+input_colour+"\n$")
+    
+    default_options(bi) 
     if bi == '':
         bi = prev_bet
     try:
@@ -100,6 +96,7 @@ def texas_holdem(deck):
     def ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val):
         eval_hand(hand,dealers_hand)
         opt = raw_input_bens('f,r,c?\n')
+        default_options(opt)
         if opt=='f':
             print 'You Fold'
         if opt =='r':

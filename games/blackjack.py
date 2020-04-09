@@ -1,11 +1,10 @@
 from deck import *
 from betting import *
-from console import *
 from accounts import *
-from general import *
+from general.console import *
+from general.general import *
+from general.colours import *
 
-#printer = [[0,0]]
-#winlose = [[0,0]]
 count = 0
 
 def evaluate_num(num):
@@ -91,9 +90,6 @@ def play_again(deck):
     if opt2 not in ['n','no','yes','y','','exit','stats']:
         print '"'+opt2+'" is not a valid input, pls type "yes/y" or "no/n"'
         play_again(deck)
-    
-def clear():
-    print(chr(27) + "[2J")
 
 def show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val,blind=False):
     
@@ -127,17 +123,11 @@ def blackjack(deck):
     showbets()
     prev_bet =  ret_prev_bet()
     if prev_bet>0:
-        prev_bet_str = "\nPress enter to bet $"+str(prev_bet)+" again."
+        prev_bet_str = "\nPress enter to bet "+input_colour+"$"+str(prev_bet)+output_colour+" again."
     else:
         prev_bet_str = ''
-    bi = raw_input_bens("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+"\n$")
-    if bi == 'stats':
-        leaderboard()
-        my_name = who_am_i()
-        plot_stats(my_name)
-        blackjack(deck)
-    if bi =='exit':
-        exit_process()        
+    bi = raw_input_bens("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+input_colour+"\n$")
+    default_options(bi)    
     if bi == '':
         bi = prev_bet
     try:
@@ -183,10 +173,9 @@ def blackjack(deck):
 
         else:
 
-            opt=raw_input_bens("\n{}Hit, Stand or Fold?{}\n".format(yellow,white))
+            opt=raw_input_bens("Hit, Stand or Fold?\n")
 
-            if str(opt) == 'exit':
-                exit_process()
+            default_options(opt)
 
             if (str(opt) == 'hit') or (str(opt) =='h'):
                 
@@ -258,13 +247,6 @@ def blackjack(deck):
                     play_again(deck)
                 #else:
                 #    print 'missed'
-
-            if str(opt) == 'stats':
-                leaderboard()
-                my_name = who_am_i()
-                plot_stats(my_name)
-                play_again(deck)
-
             if str(opt) == 'help':
                 print green,'''\nOptions
 -------------------------------

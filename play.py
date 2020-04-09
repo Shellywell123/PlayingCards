@@ -1,6 +1,6 @@
 from deck import *
 from accounts import *
-from general import *
+from general.general import *
 
 #make a deck
 deck = new_deck()
@@ -20,4 +20,4 @@ shuffle(deck)
 
 intro()
 user_query()
-games(deck)
+games()
