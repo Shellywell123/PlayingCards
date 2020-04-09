@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from games.blackjack import *
+#from games.blackjack import *
+from deck import *
 from stats import *
 
 balance = 1000

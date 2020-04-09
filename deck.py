@@ -30,11 +30,6 @@ suits =   [spades,clubs,hearts,diamonds]
 numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
 
 count = 0
-
-def raw_input_bens(str):
-    opt = raw_input(str+red)
-    print white,
-    return opt
     
 def shuffle(deck):
     from random import shuffle

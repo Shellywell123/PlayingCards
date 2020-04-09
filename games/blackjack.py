@@ -2,7 +2,7 @@ from deck import *
 from betting import *
 from console import *
 from accounts import *
-
+from general import *
 
 #printer = [[0,0]]
 #winlose = [[0,0]]
@@ -64,12 +64,6 @@ def evaluate_num_hand(hand):
                 hand_val -= 10
 
     return hand_val
-
-def exit_process():
-    print 'goodbye {}...'.format(who_am_i())
-    refresh_account()
-    leaderboard()
-    exit(0)
 
 def play_again(deck):
 

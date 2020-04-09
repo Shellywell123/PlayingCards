@@ -1,6 +1,7 @@
 from deck import *
 from betting import *
 from console import *
+from general import *
 from accounts import *
 
 def show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False):

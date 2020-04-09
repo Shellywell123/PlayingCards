@@ -1,5 +1,5 @@
 from betting import *
-from games.blackjack import *
+from general import *
 
 name = ''
 accounts_path = "data/accounts.txt"
