@@ -7,6 +7,10 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 ### How to setup:
 1) git clone https://github.com/Shellywell123/PlayingCards.git
 
+### How to update:
+1) cd PlayingCards/\
+2) git pull (to update)\
+
 ### How to run:
 1) execute play.py
 
@@ -20,7 +24,10 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 -game play stats\
 -accounts and leaderboard
 
-
+### current bugs:
+-if both dealer and you get 21, should go to push\
+-dealer can only hit once\
+-menu option to change games\
 
 ### Coming Soon:
 
