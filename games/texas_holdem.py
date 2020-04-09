@@ -68,7 +68,7 @@ def texas_holdem(deck):
         prev_bet_str = "\nPress enter to bet $"+str(prev_bet)+" again."
     else:
         prev_bet_str = ''
-    bi = raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+"\n$")
+    bi = raw_input_bens("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+"\n$")
     if bi == 'stats':
         leaderboard()
         my_name = who_am_i()
@@ -98,7 +98,7 @@ def texas_holdem(deck):
     show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False)
     def ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val):
         eval_hand(hand,dealers_hand)
-        opt = raw_input('f,r,c?\n')
+        opt = raw_input_bens('f,r,c?\n')
         if opt=='f':
             print 'You Fold'
         if opt =='r':

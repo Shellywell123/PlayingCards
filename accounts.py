@@ -40,7 +40,7 @@ def user_query():
     if name not in users:
 
         if name == '':
-            name = raw_input("Who are you?\n")
+            name = raw_input_bens("Who are you?\n")
 
         if name == 'exit':
             print 'Goodbye ...'

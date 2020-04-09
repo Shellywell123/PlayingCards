@@ -4,7 +4,8 @@ from games.texas_holdem import *
 from accounts import *
 
 def games():
-    game = raw_input('What do you want to play?\nBlackjack "b" or Texas-Holdem "t"?\n')
+    game = raw_input_bens('\nWhat do you want to play?\n - Blackjack "b"\n - Texas-Holdem "t"\n')
+    print white,
     if game == 'blackjack' or game=='b':
         blackjack(deck)
     if game == 'texas-holdem'or game=='t':

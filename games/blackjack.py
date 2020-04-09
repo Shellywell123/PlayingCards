@@ -81,9 +81,9 @@ def play_again(deck):
     if bc == True:
         print 'YOU ARE BROKE'
         set_balance(1000)
-        opt2 = raw_input('start again?\n')
+        opt2 = raw_input_bens('start again?\n')
     else:
-        opt2 = raw_input('play again?\n')
+        opt2 = raw_input_bens('play again?\n')
 
     if opt2 == 'yes' or opt2 =='y' or opt2 =='':
         blackjack(deck)
@@ -136,7 +136,7 @@ def blackjack(deck):
         prev_bet_str = "\nPress enter to bet $"+str(prev_bet)+" again."
     else:
         prev_bet_str = ''
-    bi = raw_input("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+"\n$")
+    bi = raw_input_bens("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+"\n$")
     if bi == 'stats':
         leaderboard()
         my_name = who_am_i()
@@ -189,7 +189,7 @@ def blackjack(deck):
 
         else:
 
-            opt=raw_input("\n{}Hit, Stand or Fold?{}\n".format(yellow,white))
+            opt=raw_input_bens("\n{}Hit, Stand or Fold?{}\n".format(yellow,white))
 
             if str(opt) == 'exit':
                 exit_process()
