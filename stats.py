@@ -156,7 +156,7 @@ def plot_stats(name):
     ax5.set_xlim([min(x4),max(x4)])
     ax5.plot(x41, y41,label='dealer',linewidth=s,c=c2)
     ax5.legend()
-    ax5.grid()
+    #ax5.grid()
 
     ax6.set_xlabel('Number of cards')
     ax6.set_ylabel('something')

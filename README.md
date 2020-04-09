@@ -27,7 +27,6 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 -docstrings\
 -dealer blackjack insurance\
 -chips breakdown\
--texas holdem\
 -will make things classy\
 -will make python 3 if cba\
 -password logins\
@@ -37,3 +36,6 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 -stats of hands won and number of loans\
 -dealer hit more than once\
 -multiple decks\
+-colour coded inputs and outputs\
+-up down menu style interaction\
+-muliple hands side by side view (poker)\

@@ -205,6 +205,47 @@ def show_hand_bet(messyhand,chip,bg=white):
             print lines[n],
         print '\n',
 
+def show_hands_bet(messyhand1,messyhand2,chip,bg=white):
+
+    hand1 = []
+    hand2 = []
+
+    global balance
+    global pot
+    global balance
+    global pot
+
+    if chip == 'dealers':
+        chip = pot
+        hand1.append(bg+'             \n'*2+'     POT     \n'+chipsci(chip,bg=bg))
+    else:
+        chip=balance
+        hand1.append(bg+'             \n'*2+' YOUR BALANCE\n'+chipsci(chip,bg=bg))
+        hand2.append(bg+'             \n'*2+' YOUR BALANCE\n'+chipsci(chip,bg=bg))
+
+    for card in messyhand1:
+        num,suit=getinfo(card)
+        hand1.append(cardsci(num,suit,bg=bg))
+
+    for card in messyhand1:
+        num,suit=getinfo(card)
+        hand2.append(cardsci(num,suit,bg=bg))
+
+    print bg
+    if len(hand1)==len(hand2):
+        for n in range(10):
+            for card in hand1:
+                lines = card.split('\n')
+                print lines[n],
+            print '\n',
+
+            for card in hand2:
+                lines = card.split('\n')
+                print lines[n],
+            print '\n',
+    else:
+        print 'hands are of diff size'
+
 def show_half_hand_bet(messyhand,chip,bg=white):
     hand = []
     global balance

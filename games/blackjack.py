@@ -123,7 +123,6 @@ def show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val,blind=False):
 def blackjack(deck):
 
     #initalise games
-    user_query()
     
     deck,dealers_hand = draw(2,deck)
     deck,hand = draw(2,deck)

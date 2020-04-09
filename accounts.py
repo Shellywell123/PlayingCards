@@ -45,9 +45,14 @@ def user_query():
         if name == 'exit':
             print 'Goodbye ...'
             exit(0)
-        
-        print 'Welcome '+name+'!'
-        make_account(name)
+        if name in users:
+            user = name
+            print 'Welcome back '+name+'!'
+            user_balance = user_balances[users.index(user)]
+            set_balance(int(user_balance))
+        else:
+            print 'Welcome '+name+'!'
+            make_account(name)
 
 def make_account(name):
     users,bals= get_accounts()
