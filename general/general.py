@@ -67,7 +67,7 @@ def default_options(opt):
         leaderboard()
         my_name = who_am_i()
         plot_stats(my_name)
-        play_again(deck)w
+        play_again(deck)
 
     if str(opt) == 'help':
         from betting import betting_help
