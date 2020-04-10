@@ -65,12 +65,15 @@ def evaluate_num_hand(hand):
     return hand_val
 
 def blackjack_help():
-    print green,'''\nOptions
--------------------------------
-"hit" or "h"   = another card,
-"stand" or "s" = stick with current hand,
-"exit"  = quit game
-                ''',white
+    print green+''' Blackjack
+ -------------------------
+ - "hit" or "h"   = another card
+ - "stand" or "s" = stick with current hand
+ - "stats" = player statistics
+ - on "play again?"" prompt
+   - "y" or enter = play again
+   - "n" = end game
+                '''+white
 def play_again(deck):
 
     width,hight = terminal_size()
@@ -87,14 +90,10 @@ def play_again(deck):
 
     if opt2 == 'yes' or opt2 =='y' or opt2 =='':
         blackjack(deck)
-    if opt2 =='no' or opt2 =='n' or opt2 =='exit':
+    if opt2 =='no' or opt2 =='n':
         exit_process()
-    if opt2 == 'stats':
-        leaderboard()
-        my_name = who_am_i()
-        plot_stats(my_name)
-        play_again(deck)
-    if opt2 not in ['n','no','yes','y','','exit','stats']:
+    default_options(opt2)
+    if opt2 not in ['n','no','yes','y','','exit','stats','help']:
         print '"'+opt2+'" is not a valid input, pls type "yes/y" or "no/n"'
         play_again(deck)
 

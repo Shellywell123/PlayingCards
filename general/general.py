@@ -52,6 +52,13 @@ def raw_input_bens(str):
     print white,
     return opt
 
+def general_help():
+    print green+''' General
+ ------------------------
+ - "quit" = exit to games menu
+ - "exit" = leave casino
+ '''+white
+
 def default_options(opt):
     if str(opt) =='exit':
         exit_process()
@@ -60,12 +67,15 @@ def default_options(opt):
         leaderboard()
         my_name = who_am_i()
         plot_stats(my_name)
-        play_again(deck)
+        play_again(deck)w
 
     if str(opt) == 'help':
         from betting import betting_help
-        betting_help()
         from games.blackjack import blackjack_help
+        print green+'''\nHelp Screen
+-------------------------'''+white
+        general_help()
+        betting_help()     
         blackjack_help()
 
     if str(opt) == 'quit':

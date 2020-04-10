@@ -22,13 +22,11 @@ def ret_prev_bet():
     return last_bet
 
 def betting_help():
-    print green+'''
-betting
--------------------------
-"a" = allin
-"h" = bet half of balance
-number = bet $number
-"exit" = exit
+    print green+''' Betting
+ ------------------------
+ - "a" = allin
+ - "h" = bet half of balance
+ - number = bet $number
     '''+white
 
 def betting_opts():
