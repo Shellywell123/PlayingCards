@@ -62,6 +62,12 @@ def default_options(opt):
         plot_stats(my_name)
         play_again(deck)
 
+    if str(opt) == 'help':
+        from betting import betting_help
+        betting_help()
+        from games.blackjack import blackjack_help
+        blackjack_help()
+
     if str(opt) == 'quit':
         games()
 

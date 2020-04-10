@@ -64,6 +64,13 @@ def evaluate_num_hand(hand):
 
     return hand_val
 
+def blackjack_help():
+    print green,'''\nOptions
+-------------------------------
+"hit" or "h"   = another card,
+"stand" or "s" = stick with current hand,
+"exit"  = quit game
+                ''',white
 def play_again(deck):
 
     width,hight = terminal_size()
@@ -121,27 +128,12 @@ def blackjack(deck):
    # print 'ret bal='+str(balance)
 
     showbets()
-    prev_bet =  ret_prev_bet()
-    if prev_bet>0:
-        prev_bet_str = "\nPress enter to bet "+input_colour+"$"+str(prev_bet)+output_colour+" again."
+    bo=betting_opts()
+    if bo==False:
+        blackjack(deck)
     else:
-        prev_bet_str = ''
-    bi = raw_input_bens("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+input_colour+"\n$")
-    default_options(bi)    
-    if bi == '':
-        bi = prev_bet
-    try:
-        bi = int(bi)
-    except:
-        print red+'"'+str(bi)+'" invalid input please use integer amount\n'+white
-        blackjack(deck)
-    if bi <=0:
-        print red+'"'+str(bi)+'" invalid input please use postive amount\n'+white
-        blackjack(deck)
-    if bi>balance:
-        print red+'"'+str(bi)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white
-        blackjack(deck)
-    
+        bi=bo
+
     buyin(bi)
 
     def ask(deck,hand,dealers_hand,headless=False):
@@ -171,7 +163,6 @@ def blackjack(deck):
             play_again(deck)
 
         else:
-
             opt=raw_input_bens("Hit, Stand or Fold?\n")
 
             default_options(opt)

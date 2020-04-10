@@ -26,6 +26,7 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 -accounts and leaderboard
 
 ### current bugs:
+-help option needs to re ask()\
 -if both dealer and you get 21, should go to push\
 -dealer can only hit once\
 -menu option to change games\
