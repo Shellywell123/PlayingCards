@@ -19,6 +19,8 @@ greentable = '\033[40;42m'
 bluetable  = '\033[0;44m'
 card_back  = '\033[0;41m'
 pink       = '\033[1;35;40m'
+cyan       = '\033[1;36;40m'
+
 
 input_colour  = pink
-output_colour = yellow
+output_colour = cyan

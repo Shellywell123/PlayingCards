@@ -32,7 +32,7 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 -menu option to change games\
 
 ### Coming Soon:
-
+-number of times an account has gone broke counter\
 -docstrings\
 -dealer blackjack insurance\
 -chips breakdown\

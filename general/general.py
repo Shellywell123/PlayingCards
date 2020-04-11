@@ -79,6 +79,8 @@ def default_options(opt):
         blackjack_help()
 
     if str(opt) == 'quit':
+        from accounts import refresh_account
+        refresh_account()
         games()
 
 def clear():

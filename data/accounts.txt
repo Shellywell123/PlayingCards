@@ -1,4 +1,4 @@
-ben:276
+ben:500
 kevin:1100
 CPU:670
 Awobabobob:1000
