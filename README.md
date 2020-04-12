@@ -8,10 +8,13 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 1) "git clone https://github.com/Shellywell123/PlayingCards.git"
 
 ### How to update:
-1) ```bash
+
+1) 
+```bash
 cd PlayingCards/
 ```
-2) ```bash
+2)
+```bash
 git pull
 ```
 
