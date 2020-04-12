@@ -80,8 +80,10 @@ def split_check(hand):
 def blackjack_help():
     print green+''' Blackjack
  -------------------------
- - "hit" or "h"   = another card
- - "stand" or "s" = stick with current hand
+ - "hit/h"   = another card
+ - "doubledown/d" = hit + re bet last amount 
+    (can only double down on 2 card hand to a 3 card hand & will end you turn.)
+ - "stand/s" = stick with current hand
  - "stats" = player statistics
  - on "play again?"" prompt
    - "y" or enter = play again
@@ -201,10 +203,15 @@ def blackjack(deck):
 
         if val==21:            
             show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
-            print green,val,'!',white
-            win()
-            save_winlose(1)
-            play_again(deck)
+            if dealers_val==val:
+                push()
+                save_winlose(0)
+                play_again(deck)
+            else:
+                print green,val,'!',white
+                win()
+                save_winlose(1)
+                play_again(deck)
 
         if val>21:
             show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
@@ -214,22 +221,62 @@ def blackjack(deck):
             play_again(deck)
 
         else:
-            opt=raw_input_bens("Hit, Stand or Fold?\n")
+            opt=raw_input_bens("Hit, Stand, DoubleDown or Fold?\n")
 
             default_options(opt)
 
             if (str(opt) == 'hit') or (str(opt) =='h'):
+                deck,hit = draw(1,deck)
+                newcount = counting(hit)
+                count = newcount
+                hand = hand + hit
+                ask(deck,hand,dealers_hand)
+
+               # betting on hit
+               #
+               # choice = raisee(bi)
+               # if choice == True:
+               #     deck,hit = draw(1,deck)
+               #     newcount = counting(hit)
+               #     count = newcount
+               #     hand = hand + hit
+               #     ask(deck,hand,dealers_hand)
+               # else:
+               #     ask(deck,hand,dealers_hand,headless=True)
+
+            if (str(opt)=='doubledown') or (str(opt)=='d'):
                 
                 choice = raisee(bi)
+
                 if choice == True:
                     deck,hit = draw(1,deck)
                     newcount = counting(hit)
                     count = newcount
                     hand = hand + hit
-                    ask(deck,hand,dealers_hand)
-                else:
-                    ask(deck,hand,dealers_hand,headless=True)
-            
+                    val = evaluate_num_hand(hand)
+                    show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
+                    print 'DOUBLE DOWN'
+                    if val >=22:
+                        print red+"BUST|\nDEALER WINS"+white
+                        lose()
+                        save_winlose(-1)
+                        play_again(deck)
+
+                    if dealers_val == val:
+                        print "PUSH, pot is carried to next turn"+white
+                        push()
+                        save_winlose(0)
+                        play_again(deck)
+
+                    if dealers_val < val:
+                        dealer_opts(dealers_hand,hand,deck)
+
+                    if dealers_val > val:
+                        print red+"DEALER WINS"+white
+                        lose()
+                        save_winlose(-1)
+                        play_again(deck)
+                
             if (str(opt)=='fold') or (str(opt)=='f'):
                 print 'YOU FOLD'
                 lose()
@@ -265,7 +312,7 @@ def blackjack(deck):
                 ''',white
                 ask(deck,hand,dealers_hand,headless=True)
 
-            if str(opt) not in ['stant','s','hit','h','help','exit','fold','f']:
+            if str(opt) not in ['stant','s','d','hit','h','help','exit','fold','f']:
                 print red,'"'+str(opt)+'" is not a valid input, pls type "hit/h","stand/s" o "Fold/f".\n For more options type "help".',white
                 ask(deck,hand,dealers_hand,headless=True)
 
