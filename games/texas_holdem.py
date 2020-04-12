@@ -130,7 +130,7 @@ def texas_holdem(deck):
             print 'end of this hand'
             
             eval_hand(hand,dealers_hand)
-    
+            reverse_bet()
             texas_holdem(deck)
             #need to reshuffle deck
         else:
@@ -141,6 +141,7 @@ def texas_holdem(deck):
             default_options(opt)
             if opt=='f':
                 print 'You Fold'
+                reverse_bet()
                 texas_holdem(deck)
             if opt =='r':
                 print 'You raised'

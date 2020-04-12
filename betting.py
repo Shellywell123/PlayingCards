@@ -86,6 +86,13 @@ def push():
     #save_bal(balance)
     #pot = 0
 
+def reverse_bet():
+    global pot
+    global balance
+
+    balance = balance + pot/2
+    pot=0
+    
 def lose():
     global pot
     global balance
