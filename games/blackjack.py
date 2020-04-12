@@ -61,8 +61,23 @@ def evaluate_num_hand(hand):
         if i is 'A':
             if hand_val > 21:
                 hand_val -= 10
-
+    split_check(hand)
     return hand_val
+
+def split_check(hand):
+    nums=[]
+    for card in hand:
+        num,suit=getinfo(card)
+        nums.append(num)
+
+    if len(hand) == 2:
+        print 'erwefvreegt4fr34r'
+        if nums[0] == nums[1]:
+           print green+'spliiiiiiiiiiiiiiiiittttttttt'
+        #  return True
+    else:
+        pass
+        #return False
 
 def blackjack_help():
     print green+''' Blackjack
@@ -157,7 +172,6 @@ def dealer_opts(dealers_hand,hand,deck):
 
 
 def blackjack(deck):
-
     #initalise games
     
     deck,dealers_hand = draw(2,deck)
