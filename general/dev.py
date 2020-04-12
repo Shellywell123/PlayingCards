@@ -25,4 +25,3 @@ def dev_menu():
     optstring = ops1 + ops2
     opt = raw_input_bens(optstring)
     dev_opts(opt)
-

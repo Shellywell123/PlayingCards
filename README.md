@@ -8,12 +8,18 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 1) "git clone https://github.com/Shellywell123/PlayingCards.git"
 
 ### How to update:
-1) "cd PlayingCards/"
-2) "git pull"
+1) ```bash
+cd PlayingCards/
+```
+2) ```bash
+git pull
+```
 
 ### How to run:
 1) execute play.py
-   "python play.py"
+   ```python
+   python play.py
+   ```
 
 ### Features:
 - Windows cmd & Linux terminal compatiable<!--- (for correct ascii in Windows 'chcp 65001' may be required) --->
