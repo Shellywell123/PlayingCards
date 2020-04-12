@@ -70,10 +70,8 @@ def split_check(hand):
         num,suit=getinfo(card)
         nums.append(num)
 
-    if len(hand) == 2:
-        print 'erwefvreegt4fr34r'
-        if nums[0] == nums[1]:
-           print green+'spliiiiiiiiiiiiiiiiittttttttt'
+    if (len(hand) == 2) and (nums[0] == nums[1]):
+        print green+'spliiiiiiiiiiiiiiiiittttttttt'
         #  return True
     else:
         pass

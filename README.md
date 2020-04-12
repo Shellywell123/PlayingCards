@@ -27,9 +27,7 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 
 ### current bugs:
 -help option needs to re ask()\
--if both dealer and you get 21, should go to push\
--dealer can only hit once\
--menu option to change games\
+-if both dealer and you get 21, should go to push
 
 ### Coming Soon:
 -number of times an account has gone broke counter\
@@ -39,12 +37,10 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 -will make things classy\
 -will make python 3 if cba\
 -password logins\
--split\
+-split (rebet + split screen)\
+-doubledown\
 -sounds\
--all in\
 -stats of hands won and number of loans\
--dealer hit more than once\
 -multiple decks\
--colour coded inputs and outputs\
 -up down menu style interaction\
--muliple hands side by side view (poker)\
+-muliple hands side by side view (poker)
