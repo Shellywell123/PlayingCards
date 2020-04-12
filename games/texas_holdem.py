@@ -95,21 +95,24 @@ def texas_holdem(deck):
     
     def ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val):
         if len(dealers_hand)==5:
-            print 'end'
             show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False)
+            print 'end of this hand'
             texas_holdem(deck)
             #need to reshuffle deck
 
         else:
             show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=True)
             eval_hand(hand,dealers_hand)
-            opt = raw_input_bens('f,r,c?\n')
+            optstring = "Call("+input_colour+"c"+output_colour+") Raise("+input_colour+"r"+output_colour+"), Check("+input_colour+"ch"+output_colour+") or Fold("+input_colour+"f"+output_colour+")?\n"
+            opt = raw_input_bens(optstring)
             default_options(opt)
             if opt=='f':
                 print 'You Fold'
             if opt =='r':
                 print 'You raised'
-            if opt=='c':
+            if opt =='c':
+                print 'You Called'
+            if opt=='ch':
                 print 'You Check'
                 deck,river = draw(1,deck)
                 dealers_hand = dealers_hand + river
