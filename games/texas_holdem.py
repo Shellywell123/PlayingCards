@@ -4,6 +4,7 @@ from general.console import *
 from general.general import *
 from general.colours import *
 from accounts import *
+from collections import Counter
 
 def show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False):
     
@@ -14,7 +15,6 @@ def show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blin
 
     print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
     show_hand_bet(dealers_hand,'dealers',bg=bluetable)
-
     if blind==True:
         print '\n'+bluetable+"CPU's HAND =",val,
         show_blind_hand_bet(cpu_hand,'cpus',bg=bluetable)
@@ -28,31 +28,62 @@ def show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blin
     print white
  #   showbets()
 
-def check_dups():
-    #double
-    #triples
-    #quads
+def check_dups(listofthings):
+    d =dict(Counter(listofthings))         
+
+    dupsdata = []                                                                              
+    for thing in d:
+        numofdups=d[thing]
+        #print thing,numofdups
+        dupsdata.append([thing,numofdups])
+
+    return dupsdata
+
+def check_pair_trip_quad(nums):
+    cd = check_dups(nums)
+    for element in cd:
+        if element[1] == 2:
+            print 'you have a PAIR of '+str(element[0])+"'s"
+        if element[1] == 3:
+            print 'you have a  TRIPs of '+(element[0])+"'s"
+        if element[1] == 4:
+            print 'you have a QUADs of '+str(element[0])+"'s"
+
+def check_flush(suits):
+    cd=check_dups(suits)
+
+    for element in cd:
+        if element[1] == 5:
+            print str(element[0])+white+'FLUSH'
+
+def check_straight(nums):
     pass
 
-def check_flush():
-    pass
-
-def check_straight():
-    pass
-
-def check_card_high():
+def check_card_high(nums):
     pass
 
 def eval_hand(hand,table_cards):
 
-    if len(table_cards)==5:
-        print '5'
+    hand = hand + table_cards
 
-    if len(table_cards)==4:
-        print '4'
+    nums = []
+    suits = []
 
-    if len(table_cards)==3:
-        print '3'
+    for card in hand:
+        num,suit = getinfo(card)
+        nums.append(num)
+        suits.append(suit)
+
+    check_flush(suits)
+    check_pair_trip_quad(nums)
+   # if len(table_cards)==5:
+   #     print '5'
+
+    #if len(table_cards)==4:
+     #   print '4'
+
+    #if len(table_cards)==3:
+    #    print '3'
 
 
 def texas_holdem(deck):
@@ -97,9 +128,11 @@ def texas_holdem(deck):
         if len(dealers_hand)==5:
             show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False)
             print 'end of this hand'
+            
+            eval_hand(hand,dealers_hand)
+    
             texas_holdem(deck)
             #need to reshuffle deck
-
         else:
             show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=True)
             eval_hand(hand,dealers_hand)
@@ -108,11 +141,14 @@ def texas_holdem(deck):
             default_options(opt)
             if opt=='f':
                 print 'You Fold'
+                texas_holdem(deck)
             if opt =='r':
                 print 'You raised'
+                ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val)
             if opt =='c':
                 print 'You Called'
-            if opt=='ch':
+                ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val)
+            if opt=='ch' or opt=='':
                 print 'You Check'
                 deck,river = draw(1,deck)
                 dealers_hand = dealers_hand + river

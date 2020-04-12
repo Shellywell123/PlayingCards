@@ -7,7 +7,7 @@ from general.general import *
 
 balance = 1000
 pot = 0
-last_bet = 0
+last_bet = 1
 
 def set_balance(n):
     global balance
@@ -31,7 +31,7 @@ def betting_help():
 
 def betting_opts():
     prev_bet =  ret_prev_bet()
-    balance = ret_balance()
+    balance  = ret_balance()
 
     if prev_bet>0:
         prev_bet_str = "\nPress enter to bet "+input_colour+"$"+str(prev_bet)+output_colour+" again."
