@@ -98,6 +98,7 @@ def play_again(deck):
     if bc == True:
         print 'YOU ARE BROKE'
         set_balance(1000)
+        refresh_account(debt_added=1000)
         opt2 = raw_input_bens('start again?\n')
     else:
         opt2 = raw_input_bens('play again?\n')

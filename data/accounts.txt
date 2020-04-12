@@ -1,9 +1,6 @@
-ben:471
-kevin:1100
-CPU:670
-Awobabobob:1000
-badmotherfucker:950
-Badjee:1000
-beben:1000
-be:1000
-bben:993
+ben:733:0:
+kevin:1100:0:
+CPU:670:0:
+Awobabobob:1000:0:
+badmotherfucker:950:0:
+Badjee:1000:0:
