@@ -74,16 +74,17 @@ def buyin(bet):
     if bet>balance:
         '"'+str(bet)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white
     balance = balance - bet
-    pot = bet*2
+    pot = pot+bet*2
     last_bet = bet
     save_bet(bet)
 
 def push():
-    global pot
-    global balance
-    balance = balance + pot/2
-    save_bal(balance)
-    pot = 0
+    pass
+    #global pot
+    #global balance
+    #balance = balance + pot/2
+    #save_bal(balance)
+    #pot = 0
 
 def lose():
     global pot
