@@ -71,11 +71,10 @@ def split_check(hand):
         nums.append(num)
 
     if (len(hand) == 2) and (nums[0] == nums[1]):
-        print green+'spliiiiiiiiiiiiiiiiittttttttt'
+        return True
         #  return True
     else:
-        pass
-        #return False
+        return False
 
 def blackjack_help():
     print green+''' Blackjack
@@ -130,6 +129,19 @@ def show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val,blind=False):
     show_hand_bet(hand,'',bg=greentable)
     print white
  #   showbets()
+
+def show_table_split(dealers_hand,hand1,hand2,dealers_val,val):
+    width,hight = terminal_size()
+    print'-'*width
+    count = counting([dealers_hand[0]]+hand1+hand2)
+    print'-'*width
+
+    print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
+    show_hand_bet(dealers_hand,'dealers',bg=bluetable)
+
+    print '\n'+greentable+"YOUR HAND =",val,
+    show_split_hand_bet(hand1,hand2,bg1=greentable,bg2=bluetable)
+    print white
 
 def dealer_opts(dealers_hand,hand,deck):
                     
@@ -196,6 +208,13 @@ def blackjack(deck):
         dealers_val_blind = evaluate_num_hand([dealers_hand[0]])
         save_vals(val,dealers_val)
 
+        if split_check(hand) == True:
+            split_opt=output_colour+' Split('+input_colour+'sp'+output_colour+'),'
+            hand1,hand2=split_hand(hand)
+            show_table_split(dealers_hand,hand1,hand2,dealers_val,val)
+        else:
+            split_opt = ''
+
         if headless==True:
             pass
         else:
@@ -221,7 +240,7 @@ def blackjack(deck):
             play_again(deck)
 
         else:
-            opt=raw_input_bens("Hit, Stand, DoubleDown or Fold?\n")
+            opt=raw_input_bens("Hit("+input_colour+"h"+output_colour+"),"+split_opt+" Stand("+input_colour+"s"+output_colour+"), Double-Down("+input_colour+"d"+output_colour+") or Fold("+input_colour+"f"+output_colour+")?\n")
 
             default_options(opt)
 
@@ -231,6 +250,14 @@ def blackjack(deck):
                 count = newcount
                 hand = hand + hit
                 ask(deck,hand,dealers_hand)
+
+            if (str(opt)=='split')or(str(opt)=='sp'):
+                sc = split_check(hand)
+                if sc == True:
+                    hand1,hand2=split_hand(hand)
+                else:
+                    print 'you cannot split this hand!'
+                    ask(deck,hand,dealers_hand)
 
                # betting on hit
                #
@@ -312,7 +339,17 @@ def blackjack(deck):
                 ''',white
                 ask(deck,hand,dealers_hand,headless=True)
 
-            if str(opt) not in ['stant','s','d','hit','h','help','exit','fold','f']:
+            flags = [
+            'stand','s',
+            'split','sp'
+            'soubledown','d',
+            'hit','h',
+            'fold','f',
+            'help',
+            'exit'
+            ]   
+
+            if str(opt) not in flags:
                 print red,'"'+str(opt)+'" is not a valid input, pls type "hit/h","stand/s" o "Fold/f".\n For more options type "help".',white
                 ask(deck,hand,dealers_hand,headless=True)
 

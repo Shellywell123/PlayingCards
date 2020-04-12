@@ -289,6 +289,10 @@ def show_hands_bet(messyhand1,messyhand2,chip,bg=white):
     else:
         print 'hands are of diff size'
 
+def show_split_hand_bet(hand1,hand2,bg1,bg2):
+    show_hands(hand1,hand2,bg1=bg1,bg2=bg2)
+
+
 def show_half_hand_bet(messyhand,chip,bg=white):
     hand = []
     global balance

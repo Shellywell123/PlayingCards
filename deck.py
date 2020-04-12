@@ -283,6 +283,47 @@ def show_hand(messyhand,bg=white):
         string=string+'\n'
     return string
 
+def show_hands(messyhand1,messyhand2,bg1=white,bg2=white):
+    hand1 = []
+    hand2 = []
+
+    for card in messyhand1:
+        num,suit=getinfo(card)
+        hand1.append(cardsci(num,suit,bg=bg1))
+
+    for card in messyhand2:
+        num,suit=getinfo(card)
+        hand2.append(cardsci(num,suit,bg=bg2))
+
+    string1 = ''
+    for n in range(10):
+        for card in hand1:
+            lines = card.split('\n')
+         #   print lines[n],
+            string1=string1+lines[n]+' '
+     #   print '\n',
+        string1=string1+'\n'
+
+    string2 = ''
+    for n in range(10):
+        for card in hand2:
+            lines = card.split('\n')
+         #   print lines[n],
+            string2=string2+lines[n]+' '
+       # print '\n',
+        string2=string2+'\n'
+
+    string_final = ''
+    for n in range(10):
+        for string in [string1,string2]:
+            lines = string.split('\n')
+            print lines[n],' '*5,
+            string_final=string_final+lines[n]
+        print '\n',
+        string_final=string_final+'\n'
+
+    return string1,string2,string_final
+
 def show_half_hand(messyhand,bg=white):
     hand = []
 
@@ -305,3 +346,10 @@ def getinfo(card):
 
    # print num,suit
     return num,suit
+
+def split_hand(hand):
+    hand1 = [hand[0]]
+    hand2 = [hand[1]]
+    return hand1,hand2
+
+

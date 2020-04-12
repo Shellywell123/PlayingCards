@@ -7,6 +7,16 @@ def exit_process():
     leaderboard()
     exit(0)
 
+def suited_deck():
+    deck = new_deck()
+    return deck
+
+def numerical_deck():
+    """half numerical atm, but only needed from split checking"""
+    deck = new_deck()
+    deck = riffle(deck)
+    return deck
+
 def new_shuffled_deck():
     #make a deck
     deck = new_deck()
@@ -28,6 +38,7 @@ def games():
     if game == 'blackjack' or game=='b':
         from games.blackjack import *
         deck=new_shuffled_deck()
+        #deck = numerical_deck()
         blackjack(deck)
     if game == 'texas-holdem'or game=='t':
         from games.texas_holdem import *
