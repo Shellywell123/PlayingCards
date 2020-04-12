@@ -29,6 +29,7 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 - help option needs to re ask()
 
 ### Coming Soon:
+- five card trick
 - number of times an account has gone broke counter
 - docstrings
 - dealer blackjack insurance

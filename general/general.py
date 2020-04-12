@@ -74,12 +74,6 @@ def default_options(opt):
     if str(opt) =='exit':
         exit_process()
 
-    if str(opt) == 'stats':
-        leaderboard()
-        my_name = who_am_i()
-        plot_stats(my_name)
-        play_again(deck)
-
     if str(opt) == 'help':
         from betting import betting_help
         from games.blackjack import blackjack_help

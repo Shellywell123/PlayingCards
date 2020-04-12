@@ -45,7 +45,7 @@ def fan(deck):
     
 def draw(n,deck):
     hand = deck[:n]
-    deck2 = deck[2:]+deck[:2]
+    deck2 = deck[n:]+deck[:n]
     increase_drawncount(n)
     return deck2,hand
 

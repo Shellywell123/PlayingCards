@@ -56,7 +56,6 @@ def eval_hand(hand,table_cards):
 
 def texas_holdem(deck):
     
-
     deck,dealers_hand = draw(3,deck)
     deck,hand = draw(2,deck)
     deck,cpu_hand = draw(2,deck)

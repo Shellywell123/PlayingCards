@@ -224,8 +224,8 @@ def show_chips(chipsmessy):
 
 def show_hand_bet(messyhand,chip,bg=white):
     
-
     hand = []
+    
     global balance
     global pot
     global balance
@@ -290,6 +290,14 @@ def show_hands_bet(messyhand1,messyhand2,chip,bg=white):
         print 'hands are of diff size'
 
 def show_split_hand_bet(hand1,hand2,bg1,bg2):
+    global balance
+    chip = bg1+'             \n'*2+' YOUR BALANCE \n'+chipsci(balance,bg=bg1)
+    hand1 = [str(chip)]+hand1
+
+    for card in hand1:
+        lines = card.split('\n')
+        print len(lines)
+
     show_hands(hand1,hand2,bg1=bg1,bg2=bg2)
 
 

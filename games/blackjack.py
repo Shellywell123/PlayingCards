@@ -182,6 +182,12 @@ def dealer_opts(dealers_hand,hand,deck):
             save_winlose(0)
             play_again(deck)
 
+def stats_opt(opt,deck):
+    if str(opt) == 'stats':
+        leaderboard()
+        my_name = who_am_i()
+        plot_stats(my_name)
+        play_again(deck)
 
 def blackjack(deck):
     #initalise games
@@ -201,6 +207,7 @@ def blackjack(deck):
 
     buyin(bi)
 
+
     def ask(deck,hand,dealers_hand,headless=False):
 
         val = evaluate_num_hand(hand)
@@ -210,8 +217,6 @@ def blackjack(deck):
 
         if split_check(hand) == True:
             split_opt=output_colour+' Split('+input_colour+'sp'+output_colour+'),'
-            hand1,hand2=split_hand(hand)
-            show_table_split(dealers_hand,hand1,hand2,dealers_val,val)
         else:
             split_opt = ''
 
@@ -243,6 +248,7 @@ def blackjack(deck):
             opt=raw_input_bens("Hit("+input_colour+"h"+output_colour+"),"+split_opt+" Stand("+input_colour+"s"+output_colour+"), Double-Down("+input_colour+"d"+output_colour+") or Fold("+input_colour+"f"+output_colour+")?\n")
 
             default_options(opt)
+            stats_opt(opt,deck)
 
             if (str(opt) == 'hit') or (str(opt) =='h'):
                 deck,hit = draw(1,deck)
@@ -251,10 +257,13 @@ def blackjack(deck):
                 hand = hand + hit
                 ask(deck,hand,dealers_hand)
 
-            if (str(opt)=='split')or(str(opt)=='sp'):
+            if (str(opt)=='split') or (str(opt)=='sp'):
                 sc = split_check(hand)
                 if sc == True:
                     hand1,hand2=split_hand(hand)
+                    show_table_split(dealers_hand,hand1,hand2,dealers_val,val)
+                    hand = hand1
+                    ask(deck,hand,dealers_hand)
                 else:
                     print 'you cannot split this hand!'
                     ask(deck,hand,dealers_hand)
@@ -346,11 +355,12 @@ def blackjack(deck):
             'hit','h',
             'fold','f',
             'help',
+            'stats',
             'exit'
             ]   
 
             if str(opt) not in flags:
-                print red,'"'+str(opt)+'" is not a valid input, pls type "hit/h","stand/s" o "Fold/f".\n For more options type "help".',white
+                print red+'"'+input_colour+str(opt)+red+'" is not a valid input, pls type "hit/h","stand/s" o "Fold/f".\n For more options type "help".',white
                 ask(deck,hand,dealers_hand,headless=True)
 
     ask(deck,hand,dealers_hand)
