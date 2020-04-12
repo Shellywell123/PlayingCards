@@ -12,15 +12,16 @@ def show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blin
    # count = counting([dealers_hand[0]]+hand)
     print'-'*width
 
+    print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
+    show_hand_bet(dealers_hand,'dealers',bg=bluetable)
+
     if blind==True:
-        print '\n'+bluetable+"DEALER'S HAND =",dealers_val_blind,
-        show_half_hand_bet(dealers_hand,'dealers',bg=bluetable)
+        print '\n'+bluetable+"CPU's HAND =",val,
+        show_blind_hand_bet(cpu_hand,'cpus',bg=bluetable)
     else:
         print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
-        show_hand_bet(dealers_hand,'dealers',bg=bluetable)
-
-    print '\n'+bluetable+"CPU's HAND =",val,
-    show_hand_bet(cpu_hand,'',bg=bluetable)
+        show_hand_bet(cpu_hand,'',bg=bluetable)
+    
     print white
     print '\n'+greentable+"YOUR HAND =",val,
     show_hand_bet(hand,'',bg=greentable)
@@ -55,7 +56,7 @@ def eval_hand(hand,table_cards):
 
 
 def texas_holdem(deck):
-    
+
     deck,dealers_hand = draw(3,deck)
     deck,hand = draw(2,deck)
     deck,cpu_hand = draw(2,deck)
@@ -91,20 +92,29 @@ def texas_holdem(deck):
     dealers_val=0
     dealers_val_blind=0
     val=0
-    show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False)
+    
     def ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val):
-        eval_hand(hand,dealers_hand)
-        opt = raw_input_bens('f,r,c?\n')
-        default_options(opt)
-        if opt=='f':
-            print 'You Fold'
-        if opt =='r':
-            print 'You raised'
-        if opt=='c':
-            print 'You Check'
-            deck,river = draw(1,deck)
-            dealers_hand = dealers_hand + river
+        if len(dealers_hand)==5:
+            print 'end'
             show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False)
-            ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val)
+            texas_holdem(deck)
+            #need to reshuffle deck
+
+        else:
+            show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=True)
+            eval_hand(hand,dealers_hand)
+            opt = raw_input_bens('f,r,c?\n')
+            default_options(opt)
+            if opt=='f':
+                print 'You Fold'
+            if opt =='r':
+                print 'You raised'
+            if opt=='c':
+                print 'You Check'
+                deck,river = draw(1,deck)
+                dealers_hand = dealers_hand + river
+                show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False)
+                ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val)
+
     ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val)
     

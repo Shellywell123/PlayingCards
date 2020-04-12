@@ -324,3 +324,28 @@ def show_half_hand_bet(messyhand,chip,bg=white):
             lines = card.split('\n')
             print lines[n],
         print '\n',
+
+def show_blind_hand_bet(messyhand,chip,bg=white):
+    hand = []
+    global balance
+    global pot
+    if chip == 'dealers':
+        chip = pot
+        hand.append(bg+'             \n'*2+'     POT     \n'+chipsci(chip,bg=bg))
+    if chip == 'cpus':
+        chip = 1000 #cpu money tbs
+        hand.append(bg+'             \n'*2+'     CPU     \n'+chipsci(chip,bg=bg))
+
+    else:
+        chip=balance
+        hand.append(bg+'             \n'*2+' YOUR BALANCE \n'+chipsci(chip,bg=bg))
+
+    hand.append(cardsci('#','#',bg=bg))
+    hand.append(cardsci('#','#',bg=bg))
+
+    print bg
+    for n in range(10):
+        for card in hand:
+            lines = card.split('\n')
+            print lines[n],
+        print '\n',
