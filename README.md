@@ -28,7 +28,7 @@ git pull
    ```
 
 ### Features:
-- Windows cmd & Linux terminal compatiable<!--- (for correct ascii in Windows 'chcp 65001' may be required) --->
+- Windows cmd & Linux terminal compatiable<!--(for correct ascii in Windows 'chcp 65001' may be required)-->
 - card ascii art
 ![screenshot](Images/ascii_deck.png)
 - simulated real shuffles
