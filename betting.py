@@ -37,7 +37,7 @@ def betting_opts():
         prev_bet_str = "\nPress enter to bet "+input_colour+"$"+str(prev_bet)+output_colour+" again."
     else:
         prev_bet_str = ''
-    bi = raw_input_bens("How much do you want to buy in?\n(NB every hit will cost you this amount again)"+prev_bet_str+input_colour+"\n$")
+    bi = raw_input_bens("How much do you want to buy in?"+prev_bet_str+input_colour+"\n$")
     default_options(bi)    
     if bi == '':
         bi = prev_bet
