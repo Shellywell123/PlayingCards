@@ -262,9 +262,30 @@ def show_deck(deck):
         hand.append(deck[n+1])
         hand.append(deck[n+2])
         hand.append(deck[n+3])
+        show_hand(hand)
+
+def show_deck_flat(deck):
+   
+    for n in range(0,len(deck),13):
+        hand = []
+                    
+        hand.append(deck[n])
+        hand.append(deck[n+1])
+        hand.append(deck[n+2])
+        hand.append(deck[n+3])
+        hand.append(deck[n+4])
+        hand.append(deck[n+5])
+        hand.append(deck[n+6])
+        hand.append(deck[n+7])
+        hand.append(deck[n+8])
+        hand.append(deck[n+9])
+        hand.append(deck[n+10])
+        hand.append(deck[n+11])
+        hand.append(deck[n+12])
+
 
         show_hand(hand)
-        
+
 def show_hand(messyhand,bg=white):
     hand = []
 

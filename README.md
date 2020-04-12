@@ -18,6 +18,7 @@ Python 2.7 package for simulating cards games and shuffles in terminal! Written 
 ### Features:
 - Windows cmd & Linux terminal compatiable<!--- (for correct ascii in Windows 'chcp 65001' may be required) --->
 - card asci art
+![screenshot](Images/ascii_deck.png)
 - simulated real shuffles
 - random computer shuffles
 - blackjack game play
