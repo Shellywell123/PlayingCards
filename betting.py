@@ -296,17 +296,48 @@ def show_hands_bet(messyhand1,messyhand2,chip,bg=white):
     else:
         print 'hands are of diff size'
 
-def show_split_hand_bet(hand1,hand2,bg1,bg2):
+
+def show_split_hand_bet(hand1,hand2,bg1=white,bg2=white):
     global balance
-    chip = bg1+'             \n'*2+' YOUR BALANCE \n'+chipsci(balance,bg=bg1)
-    hand1 = [str(chip)]+hand1
+    hand1_bet = []
+    hand2_bet = []
+
+    hand1_bet.append(bg1+'             \n'*2+' YOUR BALANCE\n'+chipsci(balance,bg=bg1))
 
     for card in hand1:
-        lines = card.split('\n')
-        print len(lines)
+        num,suit=getinfo(card)
+        hand1_bet.append(cardsci(num,suit,bg=bg1))
 
-    show_hands(hand1,hand2,bg1=bg1,bg2=bg2)
+    for card in hand2:
+        num,suit=getinfo(card)
+        hand2_bet.append(cardsci(num,suit,bg=bg2))
 
+    string1 = ''
+    for n in range(10):
+        for card in hand1_bet:
+            lines = card.split('\n')
+         #   print lines[n],
+            string1=string1+lines[n]+' '
+     #   print '\n',
+        string1=string1+'\n'
+
+    string2 = ''
+    for n in range(10):
+        for card in hand2_bet:
+            lines = card.split('\n')
+         #   print lines[n],
+            string2=string2+lines[n]+' '
+       # print '\n',
+        string2=string2+'\n'
+
+    string_final = ''
+    for n in range(10):
+        for string in [string1,string2]:
+            lines = string.split('\n')
+            print lines[n],' '*5,
+            string_final=string_final+lines[n]
+        print '\n',
+        string_final=string_final+'\n'
 
 def show_half_hand_bet(messyhand,chip,bg=white):
     hand = []

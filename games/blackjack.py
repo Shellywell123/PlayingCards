@@ -131,7 +131,7 @@ def show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val,blind=False):
     print white
  #   showbets()
 
-def show_table_split(dealers_hand,hand1,hand2,dealers_val,val):
+def show_table_split(dealers_hand,hand1,hand2,dealers_val,val1,val2):
     width,hight = terminal_size()
     print'-'*width
     count = counting([dealers_hand[0]]+hand1+hand2)
@@ -140,8 +140,8 @@ def show_table_split(dealers_hand,hand1,hand2,dealers_val,val):
     print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
     show_hand_bet(dealers_hand,'dealers',bg=bluetable)
 
-    print '\n'+greentable+"YOUR HAND =",val,
-    show_split_hand_bet(hand1,hand2,bg1=greentable,bg2=bluetable)
+    print '\n'+greentable+"YOUR HANDS =",val1,',',val2
+    show_split_hand_bet(hand1,hand2,bg1=greentable,bg2=greentable)
     print white
 
 def dealer_opts(dealers_hand,hand,deck):
@@ -192,7 +192,7 @@ def stats_opt(opt,deck):
 
 def blackjack(deck):
     #initalise games
-    
+   
     deck,dealers_hand = draw(2,deck)
     deck,hand = draw(2,deck)
     
@@ -262,7 +262,9 @@ def blackjack(deck):
                 sc = split_check(hand)
                 if sc == True:
                     hand1,hand2=split_hand(hand)
-                    show_table_split(dealers_hand,hand1,hand2,dealers_val,val)
+                    val1 = evaluate_num_hand(hand1)
+                    val2 = evaluate_num_hand(hand2)
+                    show_table_split(dealers_hand,hand1,hand2,dealers_val,val1,val2)
                     hand = hand1
                     ask(deck,hand,dealers_hand)
                 else:
@@ -320,7 +322,7 @@ def blackjack(deck):
                 save_winlose(-1)
                 play_again(deck)
 
-            if (str(opt)=='stand') or (str(opt)=='s'):
+            if (str(opt)=='stand') or (str(opt)=='s') or (str(opt)==''):
 
                 show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
                 print 'YOU STAND'
