@@ -128,7 +128,7 @@ def texas_holdem(deck):
             
             eval_hand(hand,dealers_hand)
             reverse_bet()
-            deck = shuffle_comp(deck)
+            deck = new_shuffled_deck()
             texas_holdem(deck)
         else:
             show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=True)

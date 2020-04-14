@@ -35,7 +35,6 @@ git pull
 
 ### current bugs:
 - help option needs to re ask()
-- shuffle_comp() breaks draw()
 
 ### Coming Soon:
 - five card trick
