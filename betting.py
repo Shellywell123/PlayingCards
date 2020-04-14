@@ -255,46 +255,53 @@ def show_hand_bet(messyhand,chip,bg=white):
             print lines[n],
         print '\n',
 
-def show_hands_bet(messyhand1,messyhand2,chip,bg=white):
-
-    hand1 = []
-    hand2 = []
+def show_hands_bet(messyhand1,messyhand2,bg=white,blind=False):
 
     global balance
-    global pot
-    global balance
-    global pot
+    hand1_bet = []
+    hand2_bet = []
 
-    if chip == 'dealers':
-        chip = pot
-        hand1.append(bg+'             \n'*2+'     POT     \n'+chipsci(chip,bg=bg))
-    else:
-        chip=balance
-        hand1.append(bg+'             \n'*2+' YOUR BALANCE\n'+chipsci(chip,bg=bg))
-        hand2.append(bg+'             \n'*2+' YOUR BALANCE\n'+chipsci(chip,bg=bg))
+    hand1_bet.append(bg+'             \n'*2+' YOUR BALANCE\n'+chipsci(balance,bg=bg))
+    hand2_bet.append(bg+'             \n'*2+' CPUs BALANCE\n'+chipsci(balance,bg=bg))
 
     for card in messyhand1:
         num,suit=getinfo(card)
-        hand1.append(cardsci(num,suit,bg=bg))
+        hand1_bet.append(cardsci(num,suit,bg=bg))
 
-    for card in messyhand1:
+    for card in messyhand2:
         num,suit=getinfo(card)
-        hand2.append(cardsci(num,suit,bg=bg))
+        hand2_bet.append(cardsci(num,suit,bg=bg))
 
-    print bg
-    if len(hand1)==len(hand2):
-        for n in range(10):
-            for card in hand1:
-                lines = card.split('\n')
-                print lines[n],
-            print '\n',
+    if blind == True:
+        hand2_bet = [hand2_bet[0]] + [cardsci('#','#',bg=bg)]*2
 
-            for card in hand2:
-                lines = card.split('\n')
-                print lines[n],
-            print '\n',
-    else:
-        print 'hands are of diff size'
+
+    string1 = ''
+    for n in range(10):
+        for card in hand1_bet:
+            lines = card.split('\n')
+         #   print lines[n],
+            string1=string1+lines[n]+' '
+     #   print '\n',
+        string1=string1+'\n'
+
+    string2 = ''
+    for n in range(10):
+        for card in hand2_bet:
+            lines = card.split('\n')
+         #   print lines[n],
+            string2=string2+lines[n]+' '
+       # print '\n',
+        string2=string2+'\n'
+
+    string_final = ''
+    for n in range(10):
+        for string in [string1,string2]:
+            lines = string.split('\n')
+            print lines[n],' '*5,
+            string_final=string_final+lines[n]
+        print '\n',
+        string_final=string_final+'\n'
 
 
 def show_split_hand_bet(hand1,hand2,bg1=white,bg2=white):

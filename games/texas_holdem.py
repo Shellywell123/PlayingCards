@@ -16,16 +16,13 @@ def show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blin
     print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
     show_hand_bet(dealers_hand,'dealers',bg=bluetable)
     if blind==True:
-        print '\n'+bluetable+"CPU's HAND =",val,
-        show_blind_hand_bet(cpu_hand,'cpus',bg=bluetable)
+        print '\n'+greentable+"YOUR HAND                                    CPU's HAND"
+        show_hands_bet(hand,cpu_hand,bg=greentable,blind=True)
     else:
-        print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
-        show_hand_bet(cpu_hand,'',bg=bluetable)
+        print '\n'+greentable+"YOUR HAND                                    CPU's HAND"
+        show_hands_bet(hand,cpu_hand,bg=greentable)
+    print white
     
-    print white
-    print '\n'+greentable+"YOUR HAND =",val,
-    show_hand_bet(hand,'',bg=greentable)
-    print white
  #   showbets()
 
 def check_dups(listofthings):
@@ -127,7 +124,7 @@ def texas_holdem(deck):
     def ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val):
         if len(dealers_hand)==5:
             show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False)
-            print 'end of this hand'
+            print white+'end of this hand'
             
             eval_hand(hand,dealers_hand)
             reverse_bet()
