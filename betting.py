@@ -298,7 +298,7 @@ def show_hands_bet(messyhand1,messyhand2,bg=white,blind=False):
     for n in range(10):
         for string in [string1,string2]:
             lines = string.split('\n')
-            print lines[n],' '*5,
+            print lines[n],' '*10,
             string_final=string_final+lines[n]
         print '\n',
         string_final=string_final+'\n'

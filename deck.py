@@ -12,7 +12,7 @@ numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
 
 count = 0
     
-def shuffle(deck):
+def shuffle_comp(deck):
     from random import shuffle
     deck = shuffle(deck)
     return deck

@@ -13,13 +13,13 @@ def show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blin
    # count = counting([dealers_hand[0]]+hand)
     print'-'*width
 
-    print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
+    print '\n'+bluetable+"DEALER'S HAND"
     show_hand_bet(dealers_hand,'dealers',bg=bluetable)
     if blind==True:
-        print '\n'+greentable+"YOUR HAND                                    CPU's HAND"
+        print '\n'+greentable+"YOUR HAND                                         CPU's HAND"
         show_hands_bet(hand,cpu_hand,bg=greentable,blind=True)
     else:
-        print '\n'+greentable+"YOUR HAND                                    CPU's HAND"
+        print '\n'+greentable+"YOUR HAND                                         CPU's HAND"
         show_hands_bet(hand,cpu_hand,bg=greentable)
     print white
     
@@ -128,8 +128,8 @@ def texas_holdem(deck):
             
             eval_hand(hand,dealers_hand)
             reverse_bet()
+            deck = shuffle_comp(deck)
             texas_holdem(deck)
-            #need to reshuffle deck
         else:
             show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=True)
             eval_hand(hand,dealers_hand)
