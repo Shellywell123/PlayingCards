@@ -38,13 +38,22 @@ def check_dups(listofthings):
 
 def check_pair_trip_quad(nums):
     cd = check_dups(nums)
+
+    fullhouse = 0
+
     for element in cd:
+
         if element[1] == 2:
             print 'you have a PAIR of '+str(element[0])+"'s"
+            fullhouse = fullhouse + 2
         if element[1] == 3:
             print 'you have a  TRIPs of '+(element[0])+"'s"
+            fullhouse = fullhouse + 3
         if element[1] == 4:
             print 'you have a QUADs of '+str(element[0])+"'s"
+
+    if fullhouse ==5:
+        print 'you have a fullhouse!'
 
 def check_flush(suits):
     cd=check_dups(suits)

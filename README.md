@@ -2,6 +2,7 @@
 Python 2.7 package for simulating cards games and shuffles in terminal! Written during Isolation 2020.
 
 ![screenshot](Images/screenshot.png)
+![screenshot](Images/poker-screenshot.png)
 ![CPU player stats](Images/CPU_stats.pdf)
 
 ### How to setup:
