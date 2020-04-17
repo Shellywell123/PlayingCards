@@ -36,24 +36,101 @@ def check_dups(listofthings):
 
     return dupsdata
 
-def check_pair_trip_quad(nums):
-    cd = check_dups(nums)
+def evaluate_num(num):
+    if num == 'A':
+        return 14
 
-    fullhouse = 0
+    if num  =='J':
+        return 11
+
+
+    if num  =='Q':
+        return 12
+
+
+    if num  =='K':
+        return 13
+
+    if num in ['2','3','4','5','6','7','8','9','10']:
+        return int(num)
+
+def val_order(hand):
+    sorted = []
+    sorted.append(hand[0])
+
+    for card in hand:
+        val = evaluate_num(card)
+        first_card = evaluate_num(hand[0])
+        if val < first_card:
+            
+
+
+
+def check_pair_trip_quad(nums):
+    """
+    high card/s after dups need to do
+    need to make a funt that takes n cards and returns list of value
+    so can return num of high cards to fil hand
+    """
+
+    cd = check_dups(nums)
+    best_pair_hand = []
+
+    fullhouse = []
+    high_card = 'x'
 
     for element in cd:
 
         if element[1] == 2:
-            print 'you have a PAIR of '+str(element[0])+"'s"
-            fullhouse = fullhouse + 2
-        if element[1] == 3:
-            print 'you have a  TRIPs of '+(element[0])+"'s"
-            fullhouse = fullhouse + 3
-        if element[1] == 4:
-            print 'you have a QUADs of '+str(element[0])+"'s"
+            print 'PAIR of '+str(element[0])+"'s"
+            fullhouse.append(element[0])
+            fullhouse.append(element[0])
 
-    if fullhouse ==5:
-        print 'you have a fullhouse!'
+            best_pair_hand.append(element[0])
+            best_pair_hand.append(element[0])
+
+        if element[1] == 3:
+            print 'TRIPs of '+(element[0])+"'s"
+            fullhouse.append(element[0])
+            fullhouse.append(element[0])
+            fullhouse.append(element[0])
+
+            best_pair_hand.append(element[0])
+            best_pair_hand.append(element[0])
+            best_pair_hand.append(element[0])
+
+        if element[1] == 4:
+            print 'QUADs of '+str(element[0])+"'s"
+            best_pair_hand.append(element[0])
+            best_pair_hand.append(element[0])
+            best_pair_hand.append(element[0])
+            best_pair_hand.append(element[0])
+            best_pair_hand.append(high_card)
+
+    if len(best_pair_hand) == 0:
+        best_pair_hand.append(high_card)
+        best_pair_hand.append(high_card)
+        best_pair_hand.append(high_card)
+        best_pair_hand.append(high_card)
+        best_pair_hand.append(high_card)
+
+    if len(best_pair_hand) == 4:
+        best_pair_hand.append(high_card)
+
+    if len(best_pair_hand) == 3:
+        best_pair_hand.append(high_card)
+        best_pair_hand.append(high_card)
+
+    if len(best_pair_hand) == 2:
+        best_pair_hand.append(high_card)
+        best_pair_hand.append(high_card)
+        best_pair_hand.append(high_card)
+
+    if len(fullhouse) == 5:
+        print 'fullhouse!'
+        best_pair_hand = fullhouse
+
+    print best_pair_hand
 
 def check_flush(suits):
     cd=check_dups(suits)
@@ -69,11 +146,14 @@ def check_card_high(nums):
     pass
 
 def eval_hand(hand,table_cards):
+    """
+    finds best five cards for a given players hand
+    """
 
     hand = hand + table_cards
 
     nums = []
-    suits = []
+    suits = [] 
 
     for card in hand:
         num,suit = getinfo(card)
@@ -91,6 +171,19 @@ def eval_hand(hand,table_cards):
     #if len(table_cards)==3:
     #    print '3'
 
+def compare_hands(my_hand, cpu_hand):
+    """
+    royal flush
+    straight flush
+    quads
+    fullhouse
+    fluah
+    straight
+    trips
+    2 pair
+    pair
+    high card
+    """
 
 def texas_holdem(deck):
 
