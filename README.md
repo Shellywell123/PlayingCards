@@ -1,7 +1,8 @@
 # PlayingCards
 Python 2.7 package for simulating cards games and shuffles in terminal! Written during Isolation 2020.
-
+### Blackjack:
 ![screenshot](Images/screenshot.png)
+### Texas=Holdem:
 ![screenshot](Images/poker-screenshot.png)
 ![CPU player stats](Images/CPU_stats.pdf)
 
