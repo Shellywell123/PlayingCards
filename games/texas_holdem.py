@@ -43,10 +43,8 @@ def evaluate_num(num):
     if num  =='J':
         return 11
 
-
     if num  =='Q':
         return 12
-
 
     if num  =='K':
         return 13
@@ -55,16 +53,16 @@ def evaluate_num(num):
         return int(num)
 
 def val_order(hand):
-    sorted = []
-    sorted.append(hand[0])
+    
+    values = []
 
     for card in hand:
         val = evaluate_num(card)
-        first_card = evaluate_num(hand[0])
-        if val < first_card:
-            
+        values.append(int(val))
 
-
+    sorted_ = [x for _,x in sorted(zip(values,hand))]
+    sorted_ = list(reversed(sorted_))
+    return sorted_
 
 def check_pair_trip_quad(nums):
     """
@@ -77,7 +75,8 @@ def check_pair_trip_quad(nums):
     best_pair_hand = []
 
     fullhouse = []
-    high_card = 'x'
+    high_card = val_order(nums)
+    print high_card
 
     for element in cd:
 
@@ -105,26 +104,19 @@ def check_pair_trip_quad(nums):
             best_pair_hand.append(element[0])
             best_pair_hand.append(element[0])
             best_pair_hand.append(element[0])
-            best_pair_hand.append(high_card)
+            best_pair_hand = best_pair_hand + high_card[:1]
 
     if len(best_pair_hand) == 0:
-        best_pair_hand.append(high_card)
-        best_pair_hand.append(high_card)
-        best_pair_hand.append(high_card)
-        best_pair_hand.append(high_card)
-        best_pair_hand.append(high_card)
+        best_pair_hand = best_pair_hand + high_card[:5]
 
     if len(best_pair_hand) == 4:
-        best_pair_hand.append(high_card)
+        best_pair_hand = best_pair_hand + high_card[:1]
 
     if len(best_pair_hand) == 3:
-        best_pair_hand.append(high_card)
-        best_pair_hand.append(high_card)
+        best_pair_hand = best_pair_hand + high_card[:2]
 
     if len(best_pair_hand) == 2:
-        best_pair_hand.append(high_card)
-        best_pair_hand.append(high_card)
-        best_pair_hand.append(high_card)
+        best_pair_hand = best_pair_hand + high_card[:3]
 
     if len(fullhouse) == 5:
         print 'fullhouse!'
