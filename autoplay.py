@@ -1,4 +1,5 @@
 
+
 def run(text_input):
     import sys
     import StringIO
@@ -19,16 +20,18 @@ def start(text_input):
     sys.stdin = f1
 
 from deck import *
+from general import general
 from games.blackjack import *
 
-deck = new_deck()
-#show_deck(deck)
-deck = riffle(deck)
-shuffle(deck)
-shuffle(deck)
-deck = riffle(deck)
-shuffle(deck)
-shuffle(deck)
+# deck = new_deck()
+# #show_deck(deck)
+# deck = riffle(deck)
+# shuffle(deck)
+# shuffle(deck)
+# deck = riffle(deck)
+# shuffle(deck)
+# shuffle(deck)
+deck = general.new_shuffled_deck()
 #show_deck(deck)
 #show_backs()
 blackjack_CPU(deck,100)

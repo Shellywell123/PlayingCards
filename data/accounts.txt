@@ -1,6 +1,8 @@
-ben:646:0:
+ben:16:1000:
 kevin:1100:0:
-CPU:710:0:
+CPU:990:1000:
 Awobabobob:1000:0:
-badmotherfucker:950:0:
 Badjee:1000:0:
+dad:1000:1000:
+sudi:6600:1000:
+alex:1000:0:

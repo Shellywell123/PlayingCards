@@ -370,12 +370,32 @@ def blackjack(deck):
 
 hand_num = 0
 
-def blackjack_CPU(deck,lim):
+def blackjack_CPU(deck,lim,option='til-bust'):
 
     global hand_num
+    global count
+    global count_stat
+    global cardsdrawn_stat
     hand_num = hand_num + 1
 
-    if hand_num == lim:
+    #print hand_num % 52
+    if int(cardsdrawn_stat) % 52 == 0:
+        deck = new_shuffled_deck()
+        count = 0
+
+    if option == 'til-bust':
+        balance = ret_balance()
+        if balance == 0:
+            #need to reset balance as this creates a loop of 0
+            set_balance(1000)
+            my_name = who_am_i()
+            print 'num of hands played = '+str(lim)
+            plot_stats(my_name)
+            refresh_account()
+            leaderboard()
+            exit(0) 
+
+    if (hand_num == lim):
         my_name = who_am_i()
         print 'num of hands played = '+str(lim)
         plot_stats(my_name)
@@ -392,7 +412,13 @@ def blackjack_CPU(deck,lim):
         
         balance = ret_balance()
         prev_bet =  ret_prev_bet()
-        bi = 10     
+
+
+        if count_stat[-1][1] > 0:
+            bi = balance*count_stat[-1][1]/10
+        else:
+            bi = 10     
+
         buyin(bi)
 
         def ask(deck,hand,dealers_hand,headless=False):
