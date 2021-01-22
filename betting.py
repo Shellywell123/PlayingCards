@@ -22,12 +22,12 @@ def ret_prev_bet():
     return last_bet
 
 def betting_help():
-    print green+''' Betting
+    print (green+''' Betting
  ------------------------
  - "a" = allin
  - "h" = bet half of balance
  - number = bet $number
-    '''+white
+    '''+white)
 
 def betting_opts():
     prev_bet =  ret_prev_bet()
@@ -37,7 +37,7 @@ def betting_opts():
         prev_bet_str = "\nPress enter to bet "+input_colour+"$"+str(prev_bet)+output_colour+" again."
     else:
         prev_bet_str = ''
-    bi = raw_input_bens("How much do you want to buy in?"+prev_bet_str+input_colour+"\n$")
+    bi = raw_input_bens("\nHow much do you want to buy in?"+prev_bet_str+input_colour+"\n$")
     default_options(bi)    
     if bi == '':
         bi = prev_bet
@@ -48,13 +48,13 @@ def betting_opts():
     try:
         bi = int(bi)
     except:
-        print red+'"'+str(bi)+'" invalid input please use integer amount\n'+white
+        print (red+'"'+str(bi)+'" invalid input please use integer amount\n'+white)
         return False
     if bi <=0:
-        print red+'"'+str(bi)+'" invalid input please use postive amount\n'+white
+        print (red+'"'+str(bi)+'" invalid input please use postive amount\n'+white)
         return False
     if bi>balance:
-        print red+'"'+str(bi)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white
+        print (red+'"'+str(bi)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white)
         return False
     else:
         return bi
@@ -63,14 +63,14 @@ def betting_opts():
 def showbets():
     global balance
     global pot
-    print ' YOUR BALANCE    THE POT'
+    print (' YOUR BALANCE    THE POT')
     show_chips([balance,pot])
 
 def buyin(bet):
     global balance
     global last_bet
     global pot
-    print balance
+    print (balance)
     if bet>balance:
         '"'+str(bet)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white
     balance = balance - bet
@@ -110,7 +110,7 @@ def raisee(bet):
     global pot
     global balance
     if bet>balance:
-        print 'you dont have enough money'
+        print ('you dont have enough money')
         return False
     else:
         balance = balance-bet
@@ -226,8 +226,8 @@ def show_chips(chipsmessy):
     for n in range(7):
         for chip in chips:
             lines = chip.split('\n')
-            print lines[n],
-        print '\n',
+            print (lines[n],end=" ")
+        print ('\n', end=" ")
 
 def show_hand_bet(messyhand,chip,bg=white):
     
@@ -248,12 +248,12 @@ def show_hand_bet(messyhand,chip,bg=white):
         num,suit=getinfo(card)
         hand.append(cardsci(num,suit,bg=bg))
 
-    print bg
+    print (bg)
     for n in range(10):
         for card in hand:
             lines = card.split('\n')
-            print lines[n],
-        print '\n',
+            print (lines[n], end=" ")
+        print ('\n', end=" ")
 
 def show_hands_bet(messyhand1,messyhand2,bg=white,blind=False):
 
@@ -298,9 +298,9 @@ def show_hands_bet(messyhand1,messyhand2,bg=white,blind=False):
     for n in range(10):
         for string in [string1,string2]:
             lines = string.split('\n')
-            print lines[n],' '*10,
+            print (lines[n],' '*10,)
             string_final=string_final+lines[n]
-        print '\n',
+        print ('\n',)
         string_final=string_final+'\n'
 
 
@@ -341,9 +341,9 @@ def show_split_hand_bet(hand1,hand2,bg1=white,bg2=white):
     for n in range(10):
         for string in [string1,string2]:
             lines = string.split('\n')
-            print lines[n],' '*5,
+            print (lines[n],' '*5, end=" ")
             string_final=string_final+lines[n]
-        print '\n',
+        print ('\n', end=" ")
         string_final=string_final+'\n'
 
 def show_half_hand_bet(messyhand,chip,bg=white):
@@ -363,12 +363,12 @@ def show_half_hand_bet(messyhand,chip,bg=white):
 
     hand = hand[:-1] + [cardsci('#','#',bg=bg)]
 
-    print bg
+    print (bg)
     for n in range(10):
         for card in hand:
             lines = card.split('\n')
-            print lines[n],
-        print '\n',
+            print (lines[n], end=" ")
+        print ('\n', end=" ")
 
 def show_blind_hand_bet(messyhand,chip,bg=white):
     hand = []
@@ -388,9 +388,9 @@ def show_blind_hand_bet(messyhand,chip,bg=white):
     hand.append(cardsci('#','#',bg=bg))
     hand.append(cardsci('#','#',bg=bg))
 
-    print bg
+    print (bg)
     for n in range(10):
         for card in hand:
             lines = card.split('\n')
-            print lines[n],
-        print '\n',
+            print (lines[n], end=" ")
+        print ('\n', end=" ")

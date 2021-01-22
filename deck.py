@@ -2,10 +2,17 @@
 from stats import *
 from general.colours import *
 
-spades = blackcard+'\xe2\x99\xa0'
-diamonds = redcard+'\xe2\x99\xa6'
-hearts =redcard+'\xe2\x99\xa5'
-clubs = blackcard+'\xe2\x99\xa3'
+#python 2
+# spades = blackcard+'\xe2\x99\xa0'
+# diamonds = redcard+'\xe2\x99\xa6'
+# hearts =redcard+'\xe2\x99\xa5'
+# clubs = blackcard+'\xe2\x99\xa3'
+
+#pythn3 
+spades = blackcard+'♠'
+diamonds = redcard+'♦'
+hearts =redcard+ '♥'
+clubs = blackcard+'♣'
 
 suits =   [spades,clubs,hearts,diamonds]
 numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
@@ -40,8 +47,8 @@ def riffle(deck):
     return riffled
 
 def fan(deck):
-    for card in deck: print card
-
+    for card in deck:
+        print (card)
     
 def draw(n,deck):
     hand = deck[:n]
@@ -249,8 +256,8 @@ def show_backs():
     for n in range(10):
         for card in hand:
             lines = card.split('\n')
-            print lines[n],
-        print '\n',
+            print (lines[n],)
+        print ('\n',)
 
 
 def show_deck(deck):
@@ -293,14 +300,14 @@ def show_hand(messyhand,bg=white):
         num,suit=getinfo(card)
         hand.append(cardsci(num,suit,bg=bg))
 
-    print bg
+    print (bg)
     string = ''
     for n in range(10):
         for card in hand:
             lines = card.split('\n')
-            print lines[n],
+            print (lines[n],)
             string=string+lines[n]
-        print '\n',
+        print ('\n',)
         string=string+'\n'
     return string
 
@@ -338,9 +345,9 @@ def show_hands(messyhand1,messyhand2,bg1=white,bg2=white):
     for n in range(10):
         for string in [string1,string2]:
             lines = string.split('\n')
-            print lines[n],' '*5,
+            print (lines[n],' '*5,)
             string_final=string_final+lines[n]
-        print '\n',
+        print ('\n',)
         string_final=string_final+'\n'
 
     return string1,string2,string_final
@@ -354,12 +361,12 @@ def show_half_hand(messyhand,bg=white):
 
     hand = hand[:-1] + [cardsci('#','#',bg=bg)]
 
-    print bg
+    print (bg)
     for n in range(10):
         for card in hand:
             lines = card.split('\n')
-            print lines[n],
-        print '\n',
+            print (lines[n],)
+        print ('\n',)
 
 def getinfo(card):
     num = card.split('\x1b')[0]

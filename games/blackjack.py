@@ -27,17 +27,17 @@ def counting(hand):
         num,suit = getinfo(card)
         if num in plusone:
             count = count + 1
-            print num,'= +1'
+            print (num,'= +1')
 
         if num in negone:
             count = count - 1
-            print num,'= -1'
+            print (num,'= -1')
 
         if num in meh:
             count = count
-            print num,'= +0'
+            print (num,'= +0')
     
-    print 'Total Count = ',count    
+    print ('Total Count = ',count    )
     save_count(count)
     return count
 
@@ -77,7 +77,7 @@ def split_check(hand):
         return False
 
 def blackjack_help():
-    print green+''' Blackjack
+    print (green+''' Blackjack
  -------------------------
  - "hit/h"   = another card
  - "doubledown/d" = hit + re bet last amount 
@@ -87,16 +87,17 @@ def blackjack_help():
  - on "play again?"" prompt
    - "y" or enter = play again
    - "n" = end game
-                '''+white
+                '''+white)
+
 def play_again(deck):
 
     width,hight = terminal_size()
-    print'-'*width
+    print('-'*width)
 
     bc = broke_check()
 
     if bc == True:
-        print 'YOU ARE BROKE'
+        print ('YOU ARE BROKE')
         set_balance(1000)
         refresh_account(debt_added=1000)
         opt2 = raw_input_bens('start again?\n')
@@ -109,40 +110,40 @@ def play_again(deck):
         exit_process()
     default_options(opt2)
     if opt2 not in ['n','no','yes','y','','exit','stats','help']:
-        print '"'+opt2+'" is not a valid input, pls type "yes/y" or "no/n"'
+        print ('"'+opt2+'" is not a valid input, pls type "yes/y" or "no/n"')
         play_again(deck)
 
 def show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val,blind=False):
     
     width,hight = terminal_size()
-    print'-'*width
+    print('-'*width)
     count = counting([dealers_hand[0]]+hand)
-    print'-'*width
+    print('-'*width)
 
     if blind==True:
-        print '\n'+bluetable+"DEALER'S HAND =",dealers_val_blind,
+        print ('\n'+bluetable+"DEALER'S HAND =",dealers_val_blind,)
         show_half_hand_bet(dealers_hand,'dealers',bg=bluetable)
     else:
-        print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
+        print ('\n'+bluetable+"DEALER'S HAND =",dealers_val,)
         show_hand_bet(dealers_hand,'dealers',bg=bluetable)
 
-    print '\n'+greentable+"YOUR HAND =",val,
+    print ('\n'+greentable+"YOUR HAND =",val,)
     show_hand_bet(hand,'',bg=greentable)
-    print white
+    print (white)
  #   showbets()
 
 def show_table_split(dealers_hand,hand1,hand2,dealers_val,val1,val2):
     width,hight = terminal_size()
-    print'-'*width
+    print('-'*width)
     count = counting([dealers_hand[0]]+hand1+hand2)
-    print'-'*width
+    print('-'*width)
 
-    print '\n'+bluetable+"DEALER'S HAND =",dealers_val,
+    print ('\n'+bluetable+"DEALER'S HAND =",dealers_val,)
     show_hand_bet(dealers_hand,'dealers',bg=bluetable)
 
-    print '\n'+greentable+"YOUR HANDS =",val1,',',val2
+    print ('\n'+greentable+"YOUR HANDS =",val1,',',val2)
     show_split_hand_bet(hand1,hand2,bg1=greentable,bg2=greentable)
-    print white
+    print (white)
 
 def dealer_opts(dealers_hand,hand,deck):
                     
@@ -151,11 +152,11 @@ def dealer_opts(dealers_hand,hand,deck):
     dealers_val_new = evaluate_num_hand(dealers_hand)
     val = evaluate_num_hand(hand)
     show_table(dealers_hand,hand,dealers_val_new,dealers_val_new,val)
-    print yellow+'DEALER HITS'+white
+    print (yellow+'DEALER HITS'+white)
 
     if dealers_val_new>21:
-        print red+'DEALER BUST'+white
-        print green+"YOU WIN!"+white
+        print (red+'DEALER BUST'+white)
+        print (green+"YOU WIN!"+white)
         win()
         save_winlose(1)
         play_again(deck)
@@ -166,19 +167,19 @@ def dealer_opts(dealers_hand,hand,deck):
             if dealers_val_new <= 15:
                 dealer_opts(dealers_hand,hand,deck)
             else:
-                print green+"YOU WIN!"+white
+                print (green+"YOU WIN!"+white)
                 win()
                 save_winlose(1)
                 play_again(deck)
 
         if dealers_val_new>val:
-            print red+"DEALER WINS"+white
+            print (red+"DEALER WINS"+white)
             lose()
             save_winlose(-1)
             play_again(deck)
 
         if dealers_val_new == val:
-            print "PUSH, pot is carried to next turn"+white
+            print ("PUSH, pot is carried to next turn"+white)
             push()
             save_winlose(0)
             play_again(deck)
@@ -233,14 +234,14 @@ def blackjack(deck):
                 save_winlose(0)
                 play_again(deck)
             else:
-                print green,val,'!',white
+                print (green,val,'!',white)
                 win()
                 save_winlose(1)
                 play_again(deck)
 
         if val>21:
             show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
-            print red+str(val)+' BUST!'+white
+            print (red+str(val)+' BUST!'+white)
             lose()
             save_winlose(-1)
             play_again(deck)
@@ -268,7 +269,7 @@ def blackjack(deck):
                     hand = hand1
                     ask(deck,hand,dealers_hand)
                 else:
-                    print 'you cannot split this hand!'
+                    print ('you cannot split this hand!')
                     ask(deck,hand,dealers_hand)
 
                # betting on hit
@@ -294,15 +295,15 @@ def blackjack(deck):
                     hand = hand + hit
                     val = evaluate_num_hand(hand)
                     show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
-                    print 'DOUBLE DOWN'
+                    print ('DOUBLE DOWN')
                     if val >=22:
-                        print red+"BUST|\nDEALER WINS"+white
+                        print (red+"BUST|\nDEALER WINS"+white)
                         lose()
                         save_winlose(-1)
                         play_again(deck)
 
                     if dealers_val == val:
-                        print "PUSH, pot is carried to next turn"+white
+                        print ("PUSH, pot is carried to next turn"+white)
                         push()
                         save_winlose(0)
                         play_again(deck)
@@ -311,13 +312,13 @@ def blackjack(deck):
                         dealer_opts(dealers_hand,hand,deck)
 
                     if dealers_val > val:
-                        print red+"DEALER WINS"+white
+                        print (red+"DEALER WINS"+white)
                         lose()
                         save_winlose(-1)
                         play_again(deck)
                 
             if (str(opt)=='fold') or (str(opt)=='f'):
-                print 'YOU FOLD'
+                print ('YOU FOLD')
                 lose()
                 save_winlose(-1)
                 play_again(deck)
@@ -325,9 +326,9 @@ def blackjack(deck):
             if (str(opt)=='stand') or (str(opt)=='s') or (str(opt)==''):
 
                 show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
-                print 'YOU STAND'
+                print ('YOU STAND')
                 if dealers_val == val:
-                    print "PUSH, pot is carried to next turn"+white
+                    print ("PUSH, pot is carried to next turn"+white)
                     push()
                     save_winlose(0)
                     play_again(deck)
@@ -336,19 +337,19 @@ def blackjack(deck):
                     dealer_opts(dealers_hand,hand,deck)
 
                 if dealers_val > val:
-                    print red+"DEALER WINS"+white
+                    print (red+"DEALER WINS"+white)
                     lose()
                     save_winlose(-1)
                     play_again(deck)
                 #else:
                 #    print 'missed'
             if str(opt) == 'help':
-                print green,'''\nOptions
+                print (green,'''\nOptions
 -------------------------------
 "hit" or "h"   = another card,
 "stand" or "s" = stick with current hand,
 "exit"  = quit game
-                ''',white
+                ''',white)
                 ask(deck,hand,dealers_hand,headless=True)
 
             flags = [
@@ -363,7 +364,7 @@ def blackjack(deck):
             ]   
 
             if str(opt) not in flags:
-                print red+'"'+input_colour+str(opt)+red+'" is not a valid input, pls type "hit/h","stand/s" o "Fold/f".\n For more options type "help".',white
+                print (red+'"'+input_colour+str(opt)+red+'" is not a valid input, pls type "hit/h","stand/s" o "Fold/f".\n For more options type "help".',white)
                 ask(deck,hand,dealers_hand,headless=True)
 
     ask(deck,hand,dealers_hand)
@@ -389,7 +390,7 @@ def blackjack_CPU(deck,lim,option='til-bust'):
             #need to reset balance as this creates a loop of 0
             set_balance(1000)
             my_name = who_am_i()
-            print 'num of hands played = '+str(lim)
+            print ('num of hands played = '+str(lim))
             plot_stats(my_name)
             refresh_account()
             leaderboard()
@@ -397,7 +398,7 @@ def blackjack_CPU(deck,lim,option='til-bust'):
 
     if (hand_num == lim):
         my_name = who_am_i()
-        print 'num of hands played = '+str(lim)
+        print ('num of hands played = '+str(lim))
         plot_stats(my_name)
         refresh_account()
         leaderboard()
@@ -435,14 +436,14 @@ def blackjack_CPU(deck,lim,option='til-bust'):
 
             if val==21:            
                 show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
-                print green,val,'!',white
+                print (green,val,'!',white)
                 win()
                 save_winlose(1)
                 blackjack_CPU(deck,lim)
 
             if val>21:
                 show_table(dealers_hand,hand,dealers_val,dealers_val_blind,val)
-                print red+str(val)+' BUST!'+white
+                print (red+str(val)+' BUST!'+white)
                 lose()
                 save_winlose(-1)
                 blackjack_CPU(deck,lim)
@@ -457,16 +458,16 @@ def blackjack_CPU(deck,lim,option='til-bust'):
                     ask(deck,hand,dealers_hand,headless=True)
             
             if val<=7:
-                print 'YOU FOLD'
+                print ('YOU FOLD')
                 lose()
                 save_winlose(-1)
                 blackjack_CPU(deck,lim)
 
             if val>=18:
 
-                print 'YOU STAND'
+                print( 'YOU STAND')
                 if dealers_val == val:
-                    print "PUSH",white
+                    print( "PUSH",white)
                     push()
                     save_winlose(0)
                     blackjack_CPU(deck,lim)
@@ -477,11 +478,11 @@ def blackjack_CPU(deck,lim,option='til-bust'):
                     dealers_hand = dealers_hand + dealers_hit
                     dealers_val_new = evaluate_num_hand(dealers_hand)
                     show_table(dealers_hand,hand,dealers_val_new,dealers_val_blind,val)
-                    print yellow+'DEALER HITS'+white
+                    print (yellow+'DEALER HITS'+white)
 
                     if dealers_val_new>21:
-                        print red+'DEALER BUST'+white
-                        print green+"YOU WIN!"+white
+                        print (red+'DEALER BUST'+white)
+                        print (green+"YOU WIN!"+white)
                         win()
                         save_winlose(1)
                         blackjack_CPU(deck,lim)
@@ -489,25 +490,25 @@ def blackjack_CPU(deck,lim,option='til-bust'):
                     else:
 
                         if dealers_val_new < val:
-                            print green+"YOU WIN!"+white
+                            print (green+"YOU WIN!"+white)
                             win()
                             save_winlose(1)
                             blackjack_CPU(deck,lim)
 
                         if dealers_val_new>val:
-                            print red+"DEALER WINS"+white
+                            print (red+"DEALER WINS"+white)
                             lose()
                             save_winlose(-1)
                             blackjack_CPU(deck,lim)
 
                         if dealers_val_new == val:
-                            print "PUSH"+white
+                            print ("PUSH"+white)
                             push()
                             save_winlose(0)
                             blackjack_CPU(deck,lim) 
 
                 if dealers_val > val:
-                    print red+"DEALER WINS"+white
+                    print (red+"DEALER WINS"+white)
                     lose()
                     save_winlose(-1)
                     blackjack_CPU(deck,lim)

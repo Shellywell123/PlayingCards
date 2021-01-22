@@ -41,7 +41,7 @@ def user_query():
 
     if name in users:
         user = name
-        print 'Welcome back '+name+'!'
+        print ('Welcome back '+name+'!')
         user_balance = user_balances[users.index(user)]
         set_balance(int(user_balance))
 
@@ -56,15 +56,15 @@ def user_query():
             user_query()
 
         if name == 'exit':
-            print 'Goodbye ...'
+            print ('Goodbye ...')
             exit(0)
         if name in users:
             user = name
-            print 'Welcome back '+name+'!'
+            print ('Welcome back '+name+'!')
             user_balance = user_balances[users.index(user)]
             set_balance(int(user_balance))
         else:
-            print 'Welcome '+name+'!'
+            print ('Welcome '+name+'!')
             make_account(name)
 
 def make_account(name):
@@ -85,8 +85,8 @@ def delete_account(user):
     text_file.close()
 
     users,balances,debts = get_accounts()
-    print users
-    print user+"'s account has been deleted"
+    print (users)
+    print (user+"'s account has been deleted")
 
 def reset_debts():
     name = who_am_i()
@@ -95,7 +95,7 @@ def reset_debts():
     text_file = open(accounts_path, "w")
     for n in range(len(users)):
         text_file.write(users[n]+':'+balances[n]+':'+str(0)+':'+'\n')
-        print debts[n],
+        print (debts[n],)
     text_file.close()
 
 def refresh_account(debt_added=0):
@@ -108,7 +108,7 @@ def refresh_account(debt_added=0):
     debt = int(old_debt) + debt_added
 
     if debt >0:
-        print 'your account has now loaned $'+str(debt)
+        print ('your account has now loaned $'+str(debt))
     new_balance = ret_balance()
 
     balances[users.index(name)] = str(new_balance)
@@ -138,8 +138,8 @@ def leaderboard():
     balances = list(reversed(balances))
     users = list(reversed(users))
 
-    print '\n'+'-'*15
-    print 'LEADERBOARD'
+    print ('\n'+'-'*15)
+    print ('LEADERBOARD')
     for i in range(len(users)):
-        print str(i+1)+') '+users[i]+' $'+str(balances[i])
+        print (str(i+1)+') '+users[i]+' $'+str(balances[i]))
  

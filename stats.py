@@ -44,7 +44,7 @@ def save_bet(b):
 def deck_lines(ax,carddata,datadata):
     s=1.0
     linetop = max(datadata)
-    print linetop
+    print (linetop)
     linebot = min(datadata)
 
     ncardsplayed =max(carddata)
@@ -163,14 +163,14 @@ def plot_stats(name):
     ax6.grid()
 
 
-    print '\n'+'-'*15
-    print 'STATS'
-    print 'drawn '+str(cardsdrawn_stat)
-    print 'count '+str(count_stat[-1][1])
-    print 'wl '+str(wl_stat[-1][1])
-    print 'balance'+str(bal_stat[-1][1])
-    print 'max bet'+str(max(bet_stat))
-    print '-'*15
+    print ('\n'+'-'*15)
+    print ('STATS')
+    print ('drawn '+str(cardsdrawn_stat))
+    print ('count '+str(count_stat[-1][1]))
+    print ('wl '+str(wl_stat[-1][1]))
+    print ('balance'+str(bal_stat[-1][1]))
+    print ('max bet'+str(max(bet_stat)))
+    print ('-'*15)
 
     fig.tight_layout(rect=[0.0,0.0,1.0,0.95])
     
