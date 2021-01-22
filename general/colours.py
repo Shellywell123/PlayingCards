@@ -1,6 +1,3 @@
-from colorama import init
-init()
-
 import os
 
 if os.name == 'nt':
@@ -9,6 +6,9 @@ if os.name == 'nt':
     except:
         print('this can be ignored if running on  \n')
         pass
+else:
+    from colorama import init
+    init()
 
 red        = '\033[1;91m'
 yellow     = '\033[1;93m'
