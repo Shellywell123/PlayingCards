@@ -9,19 +9,19 @@ from collections import Counter
 def show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False):
     
     width,hight = terminal_size()
-    print'-'*width
+    print('-'*width)
    # count = counting([dealers_hand[0]]+hand)
-    print'-'*width
+    print('-'*width)
 
-    print '\n'+bluetable+"DEALER'S HAND"
+    print ('\n'+bluetable+"DEALER'S HAND")
     show_hand_bet(dealers_hand,'dealers',bg=bluetable)
     if blind==True:
-        print '\n'+greentable+"YOUR HAND                                         CPU's HAND"
+        print ('\n'+greentable+"YOUR HAND                                         CPU's HAND")
         show_hands_bet(hand,cpu_hand,bg=greentable,blind=True)
     else:
-        print '\n'+greentable+"YOUR HAND                                         CPU's HAND"
+        print ('\n'+greentable+"YOUR HAND                                         CPU's HAND")
         show_hands_bet(hand,cpu_hand,bg=greentable)
-    print white
+    print (white)
     
  #   showbets()
 
@@ -76,12 +76,12 @@ def check_pair_trip_quad(nums):
 
     fullhouse = []
     high_card = val_order(nums)
-    print high_card
+    print (high_card)
 
     for element in cd:
 
         if element[1] == 2:
-            print 'PAIR of '+str(element[0])+"'s"
+            print ('PAIR of '+str(element[0])+"'s")
             fullhouse.append(element[0])
             fullhouse.append(element[0])
 
@@ -89,7 +89,7 @@ def check_pair_trip_quad(nums):
             best_pair_hand.append(element[0])
 
         if element[1] == 3:
-            print 'TRIPs of '+(element[0])+"'s"
+            print ('TRIPs of '+(element[0])+"'s")
             fullhouse.append(element[0])
             fullhouse.append(element[0])
             fullhouse.append(element[0])
@@ -99,7 +99,7 @@ def check_pair_trip_quad(nums):
             best_pair_hand.append(element[0])
 
         if element[1] == 4:
-            print 'QUADs of '+str(element[0])+"'s"
+            print ('QUADs of '+str(element[0])+"'s")
             best_pair_hand.append(element[0])
             best_pair_hand.append(element[0])
             best_pair_hand.append(element[0])
@@ -119,17 +119,17 @@ def check_pair_trip_quad(nums):
         best_pair_hand = best_pair_hand + high_card[:3]
 
     if len(fullhouse) == 5:
-        print 'fullhouse!'
+        print ('fullhouse!')
         best_pair_hand = fullhouse
 
-    print best_pair_hand
+    print (best_pair_hand)
 
 def check_flush(suits):
     cd=check_dups(suits)
 
     for element in cd:
         if element[1] == 5:
-            print str(element[0])+white+'FLUSH'
+            print (str(element[0])+white+'FLUSH')
 
 def check_straight(nums):
     pass
@@ -200,13 +200,13 @@ def texas_holdem(deck):
     try:
         bi = int(bi)
     except:
-        print red+'"'+str(bi)+'" invalid input please use integer amount\n'+white
+        print (red+'"'+str(bi)+'" invalid input please use integer amount\n'+white)
         texas_holdem(deck)
     if bi <=0:
-        print red+'"'+str(bi)+'" invalid input please use postive amount\n'+white
+        print (red+'"'+str(bi)+'" invalid input please use postive amount\n'+white)
         texas_holdem(deck)
     if bi>balance:
-        print red+'"'+str(bi)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white
+        print (red+'"'+str(bi)+'"is more money than you have! ($'+str(balance)+'). Place a lower bet'+white)
         texas_holdem(deck)
     
         
@@ -218,7 +218,7 @@ def texas_holdem(deck):
     def ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val):
         if len(dealers_hand)==5:
             show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False)
-            print white+'end of this hand'
+            print (white+'end of this hand')
             
             eval_hand(hand,dealers_hand)
             reverse_bet()
@@ -231,17 +231,17 @@ def texas_holdem(deck):
             opt = raw_input_bens(optstring)
             default_options(opt)
             if opt=='f':
-                print 'You Fold'
+                print ('You Fold')
                 reverse_bet()
                 texas_holdem(deck)
             if opt =='r':
-                print 'You raised'
+                print ('You raised')
                 ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val)
             if opt =='c':
-                print 'You Called'
+                print ('You Called')
                 ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val)
             if opt=='ch' or opt=='':
-                print 'You Check'
+                print ('You Check')
                 deck,river = draw(1,deck)
                 dealers_hand = dealers_hand + river
                 show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False)
