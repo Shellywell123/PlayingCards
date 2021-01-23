@@ -18,7 +18,7 @@ def append_entry(name,rank,hand):
 # Royal flushes
 #####################################################
 
-# a = 1
+a = 1
 # a AKQJ10 x4
 
 royal_flushes = []
@@ -31,7 +31,12 @@ for suit in suits:
 # Straight flushes
 #####################################################
 
-# b = a+1
+b = a+1
+
+for ind in range(0,9):
+    for suit in suits:
+        hand = []
+
 # b   910JQK x4
 # b+1 8910JQ x4
 # b+2 78910J x4
@@ -46,7 +51,7 @@ for suit in suits:
 # Four of a Kind
 #####################################################
 
-# c =b+1
+c = b+9
 
 # c   AAAAK x4
 # c+1 AAAAQ x4
@@ -57,23 +62,23 @@ for suit in suits:
 # Full house (three of a kind + pair)
 #####################################################
 
-# d = c+1
+# d = c+?
 # d   AAAKK x?
 # d+1 does KKKAA beat AAAQQ
 
 #####################################################
-# Flush
+# Flush (suited)
 #####################################################
 
-# e = d+1
+# e = d+?
 # e   9JQKA x ?
 # 
 
 #####################################################
-# Straight
+# Straight (not suited)
 #####################################################
 
-# f = e+1
+# f = e+?
 
 # f   910JQK x?
 # f+1 8910JQ x?
@@ -90,7 +95,7 @@ for suit in suits:
 # Three of a Kind
 #####################################################
 
-# g = f+1
+# g = f+?
 # g   AAAKQ x?
 # g+1 AAAQJ
 
@@ -98,7 +103,7 @@ for suit in suits:
 # Two pair
 #####################################################
 
-# h = g+1
+# h = g+?
 # h   AAKKQ x?
 # h+1 AAKKJ x?
 
@@ -106,7 +111,7 @@ for suit in suits:
 # One pair
 #####################################################
 
-# i = h+1
+# i = h+?
 # h   AAKQJ x?
 
 
@@ -114,7 +119,7 @@ for suit in suits:
 # High Card
 #####################################################
 
-# j = i+1
+# j = i+?
 # j AKQJ9 x?
 
 
