@@ -37,8 +37,9 @@ class Pipeline:
             ls, ms = bits[-2:]
         #    print(klass, ms, ls)
             if ms != _NORESULT:
-                hexscore = int(tohexscore(klass, ms, ls))
-                scores.append(hexscore)
+                #hexscore = int(tohexscore(klass, ms, ls))
+                #scores.append(hexscore)
+                scores.append([klass,ms,ls])
 
         return scores 
 

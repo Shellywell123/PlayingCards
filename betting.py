@@ -229,7 +229,7 @@ def show_chips(chipsmessy):
         for chip in chips:
             lines = chip.split('\n')
             print (lines[n],end=" ")
-        print ('\n', end=" ")
+        print('\n', end=" ")
 
 def show_hand_bet(messyhand,chip,bg=white):
     

@@ -203,8 +203,9 @@ def evaluate_hand(hand):
     scores = pipeline.evaluate(matrix)
     #  print(scores)
 
+
     #   print(list(map(hex, scores)))
-    return list(map(hex, scores))[0]
+    return scores[0]
 
 def whats_in_this_hand(hand):
     """
@@ -212,9 +213,50 @@ def whats_in_this_hand(hand):
     """
     val = evaluate_hand(hand)
 
-    print(val)
-    print(int(val,16))
+    klasses = [    
+    'High Card',
+    'Pair of',
+    'Two Pair',
+    'Three of a Kind',
+    'straight',
+    'Flush',
+    'Fullhouse',
+    'Four of a Kind',
+    'Straight-Flush',
+    'Royal-Flush'
+    ]
 
+    cards = [
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+    'A']
+
+    i,j,k = val
+
+    print(val)
+
+    extra = ''
+
+    if i == 1:
+        extra = "'s"
+
+    if i == 2:
+        extra = "'s & "+ cards[k] +"'s"
+
+    # elif:
+    #     extra = ' high.'
+
+    return klasses[i] + ' ' + cards[j] + extra
 
 
 
@@ -283,7 +325,7 @@ def texas_holdem(deck):
         """
         """
         show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=True)
-        whats_in_this_hand(hand+dealers_hand)
+        print('You have a',whats_in_this_hand(hand+dealers_hand))
         optstring = "Check/Call("+input_colour+"c"+output_colour+") Raise("+input_colour+"r"+output_colour+") or Fold("+input_colour+"f"+output_colour+")?\n"
         opt = raw_input_bens(optstring)
         default_options(opt)
@@ -330,9 +372,11 @@ def texas_holdem(deck):
 
                 if outcome == '1':
                     print('you win')
+                    print('you have ',whats_in_this_hand(hand+dealers_hand))
 
                 if outcome == '2':
                     print('you lose')
+                    print('cpu has ',whats_in_this_hand(cpu_hand+dealers_hand))
 
                 if outcome == 'd':
                     print('draw')
