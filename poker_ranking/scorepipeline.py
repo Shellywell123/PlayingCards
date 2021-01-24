@@ -2,6 +2,8 @@ import numpy as np
 import functools
 
 
+_NORESULT = -1
+
 class ScoreHand:
     def __init__(self, matrix):
 
@@ -10,7 +12,7 @@ class ScoreHand:
 
 
 def tohexscore(klass, ms, ls):
-    return 16**2 * klass + 16 * ms + ls
+    return 16**2 * klass + 16 * ms + max(0, ls) # max since -1 is indicator
 
 class Pipeline:
     def __init__(self, *funcs):
@@ -33,7 +35,8 @@ class Pipeline:
         for i, bits in enumerate(mapper):
             klass = klasses - i
             ls, ms = bits[-2:]
-            if ms != 0:
+            print(klass, ms, ls)
+            if ms != _NORESULT:
                 hexscore = int(tohexscore(klass, ms, ls))
                 scores.append(hexscore)
 
@@ -45,7 +48,7 @@ def collapsed(func):
     def _wrapper(hand):
         if isinstance(hand, ScoreHand):
             indices = func(hand.collapsed)
-            return np.insert(indices, 0, [0, 0])
+            return np.insert(indices, 0, [_NORESULT, _NORESULT])
         else:
             return func(hand)
 
@@ -57,7 +60,7 @@ def matrix(func):
     def _wrapper(hand):
         if isinstance(hand, ScoreHand):
             indices = func(hand.matrix)
-            return np.insert(indices, 0, [0, 0])
+            return np.insert(indices, 0, [_NORESULT, _NORESULT])
         else:
             return func(hand)
     return _wrapper
@@ -66,7 +69,10 @@ def matrix(func):
 @matrix
 def royalflush(x):
     subselect = x[:, -5:]
-    return int(np.any(np.sum(subselect, axis=1) == 5))
+    if np.any(np.sum(subselect, axis=1) == 5):
+        return 1
+    else:
+        return np.array([])
 
 @matrix
 def straightflush(x):
@@ -103,7 +109,6 @@ def flush(x):
     suits = np.where(
         np.sum(x, axis=1) >= 5
     )[0]
-    print(suits)
 
     indices = []
     if len(suits) == 1:
@@ -133,7 +138,7 @@ def tripples(x):
 @collapsed
 def twopair(x):
     indices = np.where(x == 2)[0]
-    if len(indices) > 2:
+    if len(indices) >= 2:
         return indices
     else:
         return np.array([])
