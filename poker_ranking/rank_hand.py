@@ -77,7 +77,6 @@ highcard = ['J\x1b[0;30;47m♥',
         '10\x1b[0;30;47m♠',
         '7\x1b[0;30;47m♠',]
 
-
 tests = [royalflush,straightflush,flush,pair,twopair,highcard,straight,fullhouse,fourofakind,tripples]
 
 for hand in tests:
@@ -88,3 +87,25 @@ for hand in tests:
   print(scores)
 
   print(list(map(hex, scores)))
+
+def compare_hands(hand1,hand2):
+  """
+  """
+  hand1matrix = hand_encoder(hand1)
+  hand1scores = pipeline.evaluate(hand1matrix)
+
+  hand2matrix = hand_encoder(hand2)
+  hand2scores = pipeline.evaluate(hand2matrix)
+
+  for i in range(0,2):
+    if hand1scores[i] > hand2scores:
+      return '1'
+      #then hand 1 wins
+    if hand2scores[i] > hand1scores:
+      return '2'
+      #then hand 2 wins
+    if hand1scores[i] == hand2scores:
+      #then check next layer in or for draw
+      if i == 2:
+        #then hands draw
+
