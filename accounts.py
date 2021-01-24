@@ -1,4 +1,4 @@
-cdfrom betting import *
+from betting import *
 from general.general import *
 
 name = ''

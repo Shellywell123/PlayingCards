@@ -35,7 +35,7 @@ class Pipeline:
         for i, bits in enumerate(mapper):
             klass = klasses - i
             ls, ms = bits[-2:]
-            print(klass, ms, ls)
+        #    print(klass, ms, ls)
             if ms != _NORESULT:
                 hexscore = int(tohexscore(klass, ms, ls))
                 scores.append(hexscore)

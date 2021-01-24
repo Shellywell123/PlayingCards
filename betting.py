@@ -5,6 +5,8 @@ from stats import *
 from general.colours import *
 from general.general import *
 
+import numpy as np
+
 balance = 1000
 pot = 0
 last_bet = 1
@@ -90,7 +92,7 @@ def reverse_bet():
     global pot
     global balance
 
-    balance = balance + pot/2
+    balance = int(balance + pot/2)
     pot=0
     
 def lose():
@@ -294,13 +296,14 @@ def show_hands_bet(messyhand1,messyhand2,bg=white,blind=False):
        # print '\n',
         string2=string2+'\n'
 
+
     string_final = ''
     for n in range(10):
         for string in [string1,string2]:
             lines = string.split('\n')
-            print (lines[n],' '*10,end=" ")
+            print (lines[n]+' '*10,end= ' ')
             string_final=string_final+lines[n]
-        print ('\n',end=" ")
+        print ('\n',end='')
         string_final=string_final+'\n'
 
 

@@ -24,12 +24,12 @@ def new_shuffled_deck():
     #shuffle deck
     #show_deck(deck)
 
-    # deck = riffle(deck)
-    # shuffle_comp(deck)
-    # shuffle_comp(deck)
-    # deck = riffle(deck)
-    # shuffle_comp(deck)
-    # shuffle_comp(deck)
+    deck = riffle(deck)
+    shuffle_comp(deck)
+    shuffle_comp(deck)
+    deck = riffle(deck)
+    shuffle_comp(deck)
+    shuffle_comp(deck)
     
     #show_deck(deck)
     #show_backs()

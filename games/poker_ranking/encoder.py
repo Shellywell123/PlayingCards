@@ -1,4 +1,3 @@
-
 import numpy as np
 
 def hand_encoder(hand):
@@ -41,21 +40,3 @@ def hand_encoder(hand):
             encode_matrix[3,int(card_num)-2] += 1
 
     return encode_matrix
-
-
-# test_hand = [
-#  'A\x1b[0;30;47m♠',
-#  '2\x1b[0;30;47m♠',
-
-#  'A\x1b[0;30;47m♣',
-#  '2\x1b[0;30;47m♣',
- 
-#  'A\x1b[1;31;47m♥',
-#  '2\x1b[1;31;47m♥',
-
-#  'A\x1b[1;31;47m♦',
-#  '2\x1b[1;31;47m♦',
-#  ]
-
-# encodedhand = hand_encoder(test_hand)
-# print(encodedhand)

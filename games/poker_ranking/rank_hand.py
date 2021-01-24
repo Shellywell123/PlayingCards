@@ -1,6 +1,6 @@
 # test
 
-from scorepipeline import *
+from poker_ranking.scorepipeline import *
 from encoder import hand_encoder
 
 # instantitate the function pipeline
@@ -31,7 +31,7 @@ straightflush = ['A\x1b[0;30;47m♠',
 
 fourofakind = ['2\x1b[0;30;47m♠',
         '2\x1b[0;30;47m♦',
-        '2\x1b[0;30;47m♣'
+        '2\x1b[0;30;47m♣',
         '10\x1b[0;30;47m♥',
         '10\x1b[0;30;47m♠',]
 
@@ -90,6 +90,7 @@ for hand in tests:
 
 def compare_hands(hand1,hand2):
   """
+  Evaluates 2 hands and gives wininng hand
   """
   hand1matrix = hand_encoder(hand1)
   hand1scores = pipeline.evaluate(hand1matrix)
@@ -104,8 +105,6 @@ def compare_hands(hand1,hand2):
     if hand2scores[i] > hand1scores:
       return '2'
       #then hand 2 wins
-    if hand1scores[i] == hand2scores:
-      #then check next layer in or for draw
-      if i == 2:
-        #then hands draw
+    if hand1scores[i] == hand2scores and i==2:
+      return 'd'
 
