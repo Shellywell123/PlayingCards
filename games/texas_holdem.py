@@ -243,14 +243,14 @@ def whats_in_this_hand(hand):
 
     i,j,k = val
 
-    print(val)
+    #print(val)
 
     extra = ''
 
     if i == 1:
         extra = "'s"
 
-    if i == 2:
+    if (i == 2) or (i==6):
         extra = "'s & "+ cards[k] +"'s"
 
     # elif:
@@ -271,7 +271,7 @@ def compare_hands(hand1,hand2):
   hand2matrix = hand_encoder(hand2)
   hand2scores = pipeline.evaluate(hand2matrix)
 
-  print(hand1scores[0],'vs',hand2scores[0])
+  #print(hand1scores[0],'vs',hand2scores[0])
   for i in range(0,2):
     if hand1scores[i] > hand2scores[i]:
       return '1'
@@ -330,17 +330,17 @@ def texas_holdem(deck):
         opt = raw_input_bens(optstring)
         default_options(opt)
         if opt=='f':
-            print ('You Fold')
+            print ('You Folded')
             reverse_bet()
             texas_holdem(deck)
         if opt =='r':
-            print ('You raised')
+            print ('You Raised')
         #     ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val)
         # if opt =='c':
         #     print ('You Called')
         #     ask(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val)
         if opt=='c' or opt=='':
-            print ('You Check/called')
+            print ('You Checked/Called.')
             if show_cpu == False:
                 deck,river = draw(1,deck)
                 dealers_hand = dealers_hand + river
@@ -364,28 +364,26 @@ def texas_holdem(deck):
             if show_cpu == True:
 
                 show_table(dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,blind=False)
-                print (white+'end of this hand')
+                print (white+'End of Hand.',end=' ')
                 
                 #eval_hand(hand,dealers_hand)
                 outcome= compare_hands(hand+dealers_hand,cpu_hand+dealers_hand)
-                print(outcome)
+                #print(outcome)
 
                 if outcome == '1':
-                    print('you win')
+                    print('You {}Win!{}'.format(green,white))
                     print('you have ',whats_in_this_hand(hand+dealers_hand))
 
                 if outcome == '2':
-                    print('you lose')
-                    print('cpu has ',whats_in_this_hand(cpu_hand+dealers_hand))
+                    print('You {}Lose.{}'.format(red,white))
+                    print('cpu has',whats_in_this_hand(cpu_hand+dealers_hand))
 
                 if outcome == 'd':
-                    print('draw')
+                    print('Draw')
 
                 reverse_bet()
                 deck = new_shuffled_deck()
                 texas_holdem(deck)
-
-
 
         else:
             player_opts(deck,dealers_hand,hand,cpu_hand,dealers_val,dealers_val_blind,val,show_cpu)

@@ -126,8 +126,9 @@ def straight(x):
 
     indices = []
     for window in range(0, len(highlow) - 5):
-        if np.sum( highlow[window:window+5] ) == 5:
-            indices.append(window+5)
+        subview = highlow[window:window+4]
+        if sum([1 for i in subview if i >= 1])==5:
+            indices.append(window+4)
 
     return np.array(indices)
 
