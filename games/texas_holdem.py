@@ -216,12 +216,12 @@ def whats_in_this_hand(hand):
     klasses = [    
     'High Card',
     'Pair of',
-    'Two Pair',
-    'Three of a Kind',
-    'straight',
-    'Flush',
-    'Fullhouse',
-    'Four of a Kind',
+    'Two Pair of',
+    'Three of a Kind of',
+    'Straight,',
+    'Flush,',
+    'Fullhouse of',
+    'Four of a Kind of',
     'Straight-Flush',
     'Royal-Flush'
     ]
@@ -247,11 +247,14 @@ def whats_in_this_hand(hand):
 
     extra = ''
 
-    if i == 1:
+    if (i == 1) or (i==3):
         extra = "'s"
 
     if (i == 2) or (i==6):
         extra = "'s & "+ cards[k] +"'s"
+
+    if (i==4) or (i==5):
+        extra = ' high.'
 
     # elif:
     #     extra = ' high.'
@@ -372,11 +375,11 @@ def texas_holdem(deck):
 
                 if outcome == '1':
                     print('You {}Win!{}'.format(green,white))
-                    print('you have ',whats_in_this_hand(hand+dealers_hand))
+                    print('You have a',whats_in_this_hand(hand+dealers_hand))
 
                 if outcome == '2':
                     print('You {}Lose.{}'.format(red,white))
-                    print('cpu has',whats_in_this_hand(cpu_hand+dealers_hand))
+                    print('The CPU has a',whats_in_this_hand(cpu_hand+dealers_hand))
 
                 if outcome == 'd':
                     print('Draw')
